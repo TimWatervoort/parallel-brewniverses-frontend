@@ -33,11 +33,25 @@ const initialPosts = [
 }
 ]
 
+const apiUrl = 'https://test-brew.herokuapp.com'
+
+
 export const getPosts = () => {
-  return dispatch => {
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/posts`)
+    const json = await response.json()
+    json.forEach(x => {
+      if (x.id === 1) {
+        x.tags = ['beer', 'avery', 'belgian']
+      } else if (x.id ===2) {
+        x.tags = ['beer', 'north coast', 'imperial', 'stout']
+      } else if (x.id ===3) {
+        x.tags = ['beer', 'odell', 'amber']
+      }
+    })
     dispatch({
       type: GET_POSTS,
-      payload: initialPosts
+      payload: json
     });
   }
 }
