@@ -4,6 +4,30 @@
 }
 
 .pp-card {
-  background-color: Sienna;
-  color: white;
+  background-color: #9959D9;
+  color: #332973;
+}
+
+body {
+  background-color: #1B1640;
+}
+
+.galaxy-pink {
+  background-color: #D285F2;
+}
+
+.galaxy-blue {
+  background-color: #1B1640;
+}
+
+.galaxy-indigo {
+  background-color: #332973;
+}
+
+.galaxy-purple {
+  background-color: #9959D9;
+}
+
+.galaxy-lavender {
+  background-color: #5246A6;
 }

@@ -9,6 +9,7 @@ class PostPreview extends Component {
         <div className='card my-2 pp-card'>
           <div className='card-body'>
             <h5 className='card-title text-center'>{post.title}</h5>
+            <hr></hr>
             <div className='text-center'>
               <img className='pp-image' src={post.picture}></img>
             </div>
