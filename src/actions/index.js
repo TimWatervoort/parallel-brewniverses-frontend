@@ -94,3 +94,25 @@ export const upvote = (id, score) => {
     })
   }
 }
+
+export const downvote = (id, score) => {
+  let downvoted = parseInt(score);
+  downvoted--
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/posts/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        score: downvoted
+      })
+    })
+    const json = await response.json()
+    json.tags = tagMap[json.id]
+    dispatch({
+      type: PATCH_POST,
+      payload: json
+    })
+  }
+}

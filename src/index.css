@@ -12,6 +12,14 @@
   color: white;
 }
 
+.uparrow:hover {
+  color: blue;
+}
+
+.downarrow:hover {
+  color: red;
+}
+
 .post-bar {
   font-size: 20px;
 }

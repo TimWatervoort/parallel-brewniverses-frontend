@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { upvote } from '../actions/index'
+import { upvote, downvote } from '../actions/index'
 import { bindActionCreators } from 'redux'
 
 class PostPreview extends Component {
@@ -9,6 +9,7 @@ class PostPreview extends Component {
   constructor(props){
     super(props)
     this.sendUpvote = this.sendUpvote.bind(this)
+    this.sendDownvote = this.sendDownvote.bind(this)
   }
 
   sendUpvote() {
@@ -16,7 +17,12 @@ class PostPreview extends Component {
     upvote(post.id, post.score)
   }
 
-  render(){
+  sendDownvote() {
+    const { post, downvote } = this.props
+    downvote(post.id, post.score)
+  }
+
+  render() {
     const { post } = this.props;
     return(
       <div className='col-lg-6 col-md-12'>
@@ -32,9 +38,9 @@ class PostPreview extends Component {
             <div className='row text-center mt-3 post-bar'>
               <div className='col-4'>
                 <p>
-                  <i onClick={this.sendUpvote} className="mr-2 fas fa-arrow-up"></i>
+                  <i onClick={this.sendUpvote} className="uparrow mr-2 fas fa-arrow-up"></i>
                     {post.score}
-                  <i className="ml-2 fas fa-arrow-down"></i>
+                  <i onClick={this.sendDownvote} className="downarrow ml-2 fas fa-arrow-down"></i>
                 </p>
               </div>
               <div className='col-4'>
@@ -47,7 +53,7 @@ class PostPreview extends Component {
             </div>
 
             <div className='row text-center mt-2'>
-              {post.tags ? post.tags.map((x,i) => <Link className='badge badge-dark galaxy-lavender text-white p-1 mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : <div></div>}
+              {post.tags ? post.tags.map((x,i) => <Link className='badge badge-dark galaxy-lavender text-white p-2 mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : <div></div>}
             </div>
 
           </div>
@@ -62,7 +68,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  upvote
+  upvote,
+  downvote
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostPreview);
