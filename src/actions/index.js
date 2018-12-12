@@ -33,6 +33,9 @@ const initialPosts = [
 }
 ]
 
+const tagMap = {1: ['beer', 'avery', 'belgian'], 2: ['beer', 'north coast', 'imperial', 'stout'], 3: ['beer', 'odell', 'amber']}
+const authorMap = {1: 'TimWatervoort', 2:'JPCornejo', 3:'NickGriffen'}
+
 const apiUrl = 'https://test-brew.herokuapp.com'
 
 
@@ -41,13 +44,8 @@ export const getPosts = () => {
     const response = await fetch(`${apiUrl}/posts`)
     const json = await response.json()
     json.forEach(x => {
-      if (x.id === 1) {
-        x.tags = ['beer', 'avery', 'belgian']
-      } else if (x.id ===2) {
-        x.tags = ['beer', 'north coast', 'imperial', 'stout']
-      } else if (x.id ===3) {
-        x.tags = ['beer', 'odell', 'amber']
-      }
+      x.tags = tagMap[x.id]
+      x.author = authorMap[x.id]
     })
     dispatch({
       type: GET_POSTS,
