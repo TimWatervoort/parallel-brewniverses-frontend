@@ -13,9 +13,17 @@ class Navbar extends Component {
           <Link className="fab fa-react nav-symbol mt-2" to='/all'></Link>
         </div>
         <div className='container-fluid galaxy-lavender mt-0 text-center'>
-          <Link className="btn galaxy-lavender text-gpink mb-1" to='/home'>My Brewniverses</Link>
-          <Link className="btn galaxy-lavender text-gpink mb-1" to='/addpost'>New Review</Link>
-          <Link className="btn galaxy-lavender text-gpink mb-1" to='#'>My Profile</Link>
+          <div className='row'>
+            <div className='col'>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to='/home'>My Brewniverses</Link>
+            </div>
+            <div className='col'>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to='/addpost'>New Review</Link>
+            </div>
+            <div className='col'>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to='#'>My Profile</Link>
+            </div>
+          </div>
         </div>
       </div>
     )

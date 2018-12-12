@@ -67,7 +67,7 @@ class AddPostForm extends Component {
 
   render(){
     return(
-      <div className = 'container mt-3'>
+      <div className = 'container mt-3 text-white'>
         <div className='card galaxy-purple'>
           <div className='card-body'>
             <div className='row my-1'>
@@ -112,7 +112,7 @@ class AddPostForm extends Component {
             </div>
 
             <div className='row my-1'>
-              <button type='submit' className=' m-1 mx-auto btn galaxy-lavender'>Submit</button>
+              <button type='submit' className=' m-1 mx-auto btn text-white galaxy-lavender'>Submit</button>
             </div>
 
           </form>

@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { upvote } from '../actions/index'
+import { bindActionCreators } from 'redux'
 
 class PostPreview extends Component {
+
+  constructor(props){
+    super(props)
+    this.sendUpvote = this.sendUpvote.bind(this)
+  }
+
+  sendUpvote() {
+    const { post, upvote } = this.props
+    upvote(post.id, post.score)
+  }
+
   render(){
     const { post } = this.props;
     return(
@@ -18,7 +31,11 @@ class PostPreview extends Component {
             <div className='container'>
             <div className='row text-center mt-3 post-bar'>
               <div className='col-4'>
-                <p><i className="fas fa-arrow-up"></i> {post.score} <i className="fas fa-arrow-down"></i></p>
+                <p>
+                  <i onClick={this.sendUpvote} className="mr-2 fas fa-arrow-up"></i>
+                    {post.score}
+                  <i className="ml-2 fas fa-arrow-down"></i>
+                </p>
               </div>
               <div className='col-4'>
                 <p>Rating: {post.rating}/5</p>
@@ -44,4 +61,8 @@ const mapStateToProps = state => ({
   posts: state.posts
 });
 
-export default connect(mapStateToProps)(PostPreview);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  upvote
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostPreview);
