@@ -8,7 +8,7 @@ class Post extends Component {
     const id = match.params.id
     const post = posts.filter(x => parseInt(x.id) === parseInt(id))[0]
 
-    const tagBadges = post.tags.map((x,i) => <Link className='badge badge-dark mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>)
+    // const tagBadges = post.tags.map((x,i) => <Link className='badge badge-dark mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>)
 
     return(
       <div className='galaxy-purple container mt-3 rounded'>
@@ -45,7 +45,7 @@ class Post extends Component {
 
         <div className='row pb-2'>
           <div className='col pb-2'>
-            {tagBadges}
+              {post.tags ? post.tags.map((x,i) => <Link className='badge badge-dark mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : <div></div>}
           </div>
         </div>
 

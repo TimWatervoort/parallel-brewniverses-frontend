@@ -1,4 +1,5 @@
-export const GET_POSTS = 'GET_POSTS';
+export const GET_POSTS = 'GET_POSTS'
+export const ADD_POST = 'ADD_POST'
 
 const initialPosts = [
   {
@@ -33,11 +34,40 @@ const initialPosts = [
 }
 ]
 
+const tagMap = {1: ['beer', 'avery', 'belgian'], 2: ['beer', 'north coast', 'imperial', 'stout'], 3: ['beer', 'odell', 'amber']}
+const authorMap = {1: 'TimWatervoort', 2:'JPCornejo', 3:'NickGriffen'}
+
+const apiUrl = 'https://test-brew.herokuapp.com'
+
+
 export const getPosts = () => {
-  return dispatch => {
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/posts`)
+    const json = await response.json()
+    json.forEach(x => {
+      x.tags = tagMap[x.id]
+      x.author = authorMap[x.id]
+    })
     dispatch({
       type: GET_POSTS,
-      payload: initialPosts
-    });
+      payload: json
+    })
+  }
+}
+
+export const addPost = input => {
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/posts/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(input)
+    })
+    const json = await response.json()
+    dispatch({
+      type: ADD_POST,
+      payload: json
+    })
   }
 }
