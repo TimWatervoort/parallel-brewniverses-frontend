@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AllChannel from './components/AllChannel'
 import Navbar from './components/Navbar'
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
   render() {
@@ -15,4 +15,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
