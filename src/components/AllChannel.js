@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostPreview from './PostPreview'
 
-class Channel extends Component {
+class AllChannel extends Component {
   render(){
     const { posts } = this.props
     return(
@@ -19,4 +19,4 @@ const mapStateToProps = state => ({
   posts: state.posts
 })
 
-export default connect(mapStateToProps)(Channel)
+export default connect(mapStateToProps)(AllChannel)

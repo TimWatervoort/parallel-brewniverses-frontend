@@ -7,12 +7,15 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { getPosts } from './actions/index';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 store.dispatch(getPosts());
 
 ReactDOM.render(
   <Provider store={store}>
-  <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
