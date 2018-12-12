@@ -10,6 +10,16 @@
 
 body {
   background-color: #1B1640;
+  font-family: Georgia, serif;
+}
+
+.nav-title{
+  color: #D285F2;
+}
+
+.nav-symbol{
+  color: #D285F2;
+  font-size: 40px;
 }
 
 .galaxy-pink {
