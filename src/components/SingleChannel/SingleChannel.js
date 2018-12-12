@@ -10,7 +10,7 @@ class SingleChannel extends Component {
     const toRender = posts.filter(x => x.tags.includes(tag));
     return(
       <div>
-      <SingleChannelHead tag={tag}/>
+      <SingleChannelHead tag={tag} length={toRender.length}/>
         <div className='container'>
           <div className='row'>
             {toRender.length > 0 ? toRender.map(x => <PostPreview key={x.id} post={x} />) : <div></div>}
