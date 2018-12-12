@@ -5,7 +5,15 @@
 
 .pp-card {
   background-color: #9959D9;
-  color: #332973;
+  color: white;
+}
+
+.brew-header {
+  color: white;
+}
+
+.post-bar {
+  font-size: 20px;
 }
 
 body {
@@ -13,13 +21,22 @@ body {
   font-family: Georgia, serif;
 }
 
-.nav-title{
-  color: #D285F2;
-}
-
 .nav-symbol{
   color: #D285F2;
   font-size: 40px;
+}
+
+.nav-title{
+  font-size: 20px;
+}
+
+.text-gpink {
+  color: #D285F2;
+}
+
+.text-gpink:hover, .nav-symbol:hover {
+  text-decoration: none;
+  color: #9959D9;
 }
 
 .galaxy-pink {

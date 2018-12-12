@@ -12,7 +12,7 @@ class SingleChannelHead extends Component {
       <div className='container galaxy-purple my-3 py-3 rounded'>
         <div className='row'>
           <div className='col'>
-            <h3 className='text-center'>
+            <h3 className='brew-header text-center'>
             {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`}
             </h3>
           </div>

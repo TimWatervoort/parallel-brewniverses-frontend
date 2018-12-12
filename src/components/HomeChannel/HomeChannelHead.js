@@ -6,7 +6,7 @@ class HomeChannelHead extends Component {
       <div className='container galaxy-purple my-3 py-3 rounded'>
         <div className='row'>
           <div className='col'>
-            <h3 className='text-center'>Your Brewniverses</h3>
+            <h3 className='brew-header text-center'>Your Brewniverses</h3>
           </div>
         </div>
       </div>

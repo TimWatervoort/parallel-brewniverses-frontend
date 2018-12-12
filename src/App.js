@@ -4,7 +4,8 @@ import Navbar from './components/Navbar'
 import SingleChannel from './components/SingleChannel/SingleChannel'
 import Post from './components/Post/Post'
 import AddPostForm from './components/AddPostForm'
-import { Route, Redirect, Switch } from 'react-router-dom'
+import HomeChannel from './components/HomeChannel/HomeChannel'
+import { Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
         <Route path = '/brewniverse/:channel' component={SingleChannel}/>
         <Route path = '/post/:id' component={Post}/>
         <Route path = '/addpost' component={AddPostForm}/>
+        <Route path = '/home' component={HomeChannel}/>
       </div>
     );
   }
