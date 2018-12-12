@@ -8,7 +8,8 @@ const initialPosts = [
   content: 'It is incredible.',
   score: 5,
   rating: 5,
-  picture: 'https://cdn.beeradvocate.com/im/beers/310321.jpg'
+  picture: 'https://cdn.beeradvocate.com/im/beers/310321.jpg',
+  author: 'TimWatervoort'
   },
   {
   id: 2,
@@ -17,7 +18,8 @@ const initialPosts = [
   content: 'What a Russian day in the neighborhood.',
   score: 3,
   rating: 5,
-  picture: 'https://www.totalwine.com/media/sys_master/twmmedia/h75/h5d/9071470805022.png'
+  picture: 'https://www.totalwine.com/media/sys_master/twmmedia/h75/h5d/9071470805022.png',
+  author: 'JPCornejo'
 },
 {
   id: 3,
@@ -26,7 +28,8 @@ const initialPosts = [
   content: 'Does not taste like coins at all.',
   score: 4,
   rating: 5,
-  picture: 'https://cdn.beeradvocate.com/im/beers/740.jpg'
+  picture: 'https://cdn.beeradvocate.com/im/beers/740.jpg',
+  author: 'NickGriffen'
 }
 ]
 

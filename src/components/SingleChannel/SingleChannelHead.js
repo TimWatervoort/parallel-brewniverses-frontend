@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class SingleChannelHead extends Component {
   render() {
@@ -14,6 +15,11 @@ class SingleChannelHead extends Component {
             <h3 className='text-center'>
             {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`}
             </h3>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col text-center'>
+            <Link className='btn galaxy-indigo' to='/all'>All Brewniverses</Link>
           </div>
         </div>
       </div>
