@@ -11,8 +11,8 @@ class AddPostForm extends Component {
       title: '',
       content: '',
       rating: 0,
-      score: 0,
-      picture: ''
+      picture: '',
+      channels: ''
     }
   }
 
@@ -40,10 +40,23 @@ class AddPostForm extends Component {
     })
   }
 
+  setChannels = e => {
+    this.setState({
+      channels: e.target.value
+    })
+  }
+
   send = e => {
     e.preventDefault()
     const { addPost } = this.props
-    addPost(this.state)
+    const newPost = {
+      title: this.state.title,
+      content: this.state.content,
+      rating: this.state.rating,
+      score: 0,
+      picture: this.state.picture
+    }
+    addPost(newPost)
     this.setState({
       title: '',
       content: '',
@@ -55,14 +68,57 @@ class AddPostForm extends Component {
   render(){
     return(
       <div className = 'container mt-3'>
-        <form onSubmit={this.send}>
-          <input type='text' value={this.state.title} onChange={this.setTitle} placeholder='title' />
-          <input type='text' value={this.state.content} onChange={this.setContent} placeholder='content' />
-          <input type='url' value={this.state.picture} onChange={this.setPicture} placeholder='picture' />
-          <input type='number' value={this.state.rating} onChange={this.setRating} />
-          <button type='submit' className=' m-1 btn galaxy-lavender'>Submit</button>
-        </form>
+        <div className='card galaxy-purple'>
+          <div className='card-body'>
+            <div className='row my-1'>
+              <h3 className='mx-auto'>New Review</h3>
+            </div>
+            <hr></hr>
+          <form onSubmit={this.send}>
+
+            <div className='row my-1'>
+              <div className='col-3'><h5>Title:</h5></div>
+              <div className='col-9'>
+              <input type='text'className='form-control'  value={this.state.title} onChange={this.setTitle} placeholder='Include the name of the beverage...' />
+              </div>
+            </div>
+
+            <div className='row my-1'>
+            <div className='col-3'><h5>Image Url: </h5></div>
+            <div className='col-9'>
+              <input type='url' className='form-control' value={this.state.picture} onChange={this.setPicture} placeholder='Link to an image...' />
+            </div>
+            </div>
+
+            <div className='row my-1'>
+            <div className='col-3'><h5>Rating out of 5: </h5></div>
+            <div className='col-9'>
+              <input max={5} min={0} type='number' className='form-control' value={this.state.rating} onChange={this.setRating} />
+            </div>
+            </div>
+
+            <div className='row my-1'>
+            <div className='col-3'><h5>Your review: </h5></div>
+            <div className='col-9'>
+              <textarea type='text' className='form-control' value={this.state.content} onChange={this.setContent} placeholder='Give us your opinion...' />
+            </div>
+            </div>
+
+            <div className='row my-1'>
+            <div className='col-3'><h5>Brewniverses: </h5></div>
+            <div className='col-9'>
+              <input type='text' className='form-control' value={this.state.channels} onChange={this.setChannels} placeholder='Separate brewniverses with commas...' />
+            </div>
+            </div>
+
+            <div className='row my-1'>
+              <button type='submit' className=' m-1 mx-auto btn galaxy-lavender'>Submit</button>
+            </div>
+
+          </form>
+        </div>
       </div>
+    </div>
     )
   }
 }

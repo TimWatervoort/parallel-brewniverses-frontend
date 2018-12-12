@@ -6,12 +6,12 @@ class AllChannelHead extends Component {
       <div className='container galaxy-purple my-3 rounded'>
         <div className='row pt-3'>
           <div className='col'>
-            <h3 className='text-center'>All Brewniverses</h3>
+            <h3 className='brew-header text-center'>All Brewniverses</h3>
           </div>
         </div>
         <div className='row'>
           <div className='col'>
-            <p className='text-center'>Click on tags to visit Brewniverses!</p>
+            <p className='brew-header text-center'>Click on tags to visit Brewniverses!</p>
           </div>
         </div>
       </div>
