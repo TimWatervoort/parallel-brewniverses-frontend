@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import PostPreview from './components/PostPreview';
+import Channel from './components/Channel';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <PostPreview />
+        <Channel />
       </div>
     );
   }
