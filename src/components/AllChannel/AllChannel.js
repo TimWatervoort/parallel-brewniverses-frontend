@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PostPreview from './PostPreview'
+import PostPreview from '../PostPreview'
 import AllChannelHead from './AllChannelHead'
 
 class AllChannel extends Component {

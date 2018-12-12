@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import AllChannel from './components/AllChannel'
+import AllChannel from './components/AllChannel/AllChannel'
 import Navbar from './components/Navbar'
+import SingleChannel from './components/SingleChannel/SingleChannel'
 import { Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
         <Navbar />
         <Route exact path = '/' render={() => <Redirect to='/all'/>}/>
         <Route exact path = '/all' component ={AllChannel} />
+        <Route path = '/:channel' component={SingleChannel}/>
       </div>
     );
   }
