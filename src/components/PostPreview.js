@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 class PostPreview extends Component {
   render(){
     const { post } = this.props;
-    const tagBadges = post.tags.map((x,i) => <Link className='badge badge-dark mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>)
     return(
       <div className='col-md-6 col-sm-12'>
         <div className='card my-2 pp-card'>
@@ -28,7 +27,7 @@ class PostPreview extends Component {
             </div>
 
             <div className='row text-center mt-2'>
-              {tagBadges}
+              {post.tags ? post.tags.map((x,i) => <Link className='badge badge-dark mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : <div></div>}
             </div>
 
           </div>

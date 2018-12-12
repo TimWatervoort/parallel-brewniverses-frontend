@@ -1,4 +1,5 @@
-export const GET_POSTS = 'GET_POSTS';
+export const GET_POSTS = 'GET_POSTS'
+export const ADD_POST = 'ADD_POST'
 
 const initialPosts = [
   {
@@ -50,6 +51,23 @@ export const getPosts = () => {
     dispatch({
       type: GET_POSTS,
       payload: json
-    });
+    })
+  }
+}
+
+export const addPost = input => {
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/posts/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(input)
+    })
+    const json = await response.json()
+    dispatch({
+      type: ADD_POST,
+      payload: json
+    })
   }
 }
