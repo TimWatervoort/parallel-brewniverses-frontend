@@ -1,22 +1,22 @@
 ## Available Routes
 
-##/
+## /
 Will redirect to /all by default.
 
-##/all
+## /all
 Will show all posts from all channels.
 
-##/home
+## /home
 Shows all posts from user's subscribed channels.
 
-##/post/:id
+## /post/:id
 Expands a post and shows all its content.
 
-##/brewniverse/:channel
+## /brewniverse/:channel
 Will show all posts from the specified channel.
 
-##/login
+## /login
 Shows the login page.
 
-##/singup
+## /signup
 Shows the signup page.
