@@ -5,13 +5,18 @@ import HomeChannelHead from './HomeChannelHead'
 
 class HomeChannel extends Component {
   render(){
-    const { posts } = this.props
+    const { posts, user } = this.props
+    const toRender = posts.filter(x=>{
+      for (var i = 0; i < x.tags.length; i++){
+        return user.subscriptions.includes(x.tags[i])
+      }
+    })
     return(
       <div>
       <HomeChannelHead />
         <div className='container'>
           <div className='row'>
-            {posts.length > 0 ? posts.map(x => <PostPreview key={x.id} post={x} />) : <div></div>}
+            {toRender.length > 0 ? toRender.map(x => <PostPreview key={x.id} post={x} />) : <div></div>}
           </div>
         </div>
       </div>
@@ -20,7 +25,8 @@ class HomeChannel extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  user: state.user
 })
 
 export default connect(mapStateToProps)(HomeChannel)

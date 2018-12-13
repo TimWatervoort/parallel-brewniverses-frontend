@@ -1,6 +1,7 @@
 export const GET_POSTS = 'GET_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const PATCH_POST = 'PATCH_POST'
+export const GET_USER = 'GET_USER'
 
 const authorMap = {1: 'nickgriff'}
 
@@ -79,6 +80,20 @@ export const downvote = (id, score) => {
     dispatch({
       type: PATCH_POST,
       payload: json
+    })
+  }
+}
+
+export const getUser = () => {
+  const demoUser = {
+    id: 1,
+    username: 'nickgriff',
+    subscriptions: ['beer', 'amber']
+  }
+  return dispatch => {
+    dispatch({
+      type: GET_USER,
+      payload: demoUser
     })
   }
 }

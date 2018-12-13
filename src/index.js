@@ -5,11 +5,12 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
-import { getPosts } from './actions/index';
+import { getPosts, getUser } from './actions/index';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter as Router } from 'react-router-dom'
 
 store.dispatch(getPosts());
+store.dispatch(getUser())
 
 ReactDOM.render(
   <Router>
