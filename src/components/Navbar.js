@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 class Navbar extends Component {
   render(){
 
-    const loggedIn = false
+    let loggedIn;
+    if (Cookies.get('name')) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
 
     return(
       <div>
