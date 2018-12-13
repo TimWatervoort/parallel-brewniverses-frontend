@@ -10,6 +10,7 @@ import { getUser, getUsers } from './actions/users'
 import * as serviceWorker from './serviceWorker'
 import { HashRouter as Router } from 'react-router-dom'
 
+
 store.dispatch(getPosts())
 store.dispatch(getUser())
 store.dispatch(getUsers())

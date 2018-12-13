@@ -1,6 +1,9 @@
+import Cookies from 'js-cookie'
+
 export const GET_USER = 'GET_USER'
 export const GET_USERS = 'GET_USERS'
 export const ADD_USER = 'ADD_USER'
+export const SET_USER_COOKIE = 'SET_USER_COOKIE'
 
 const apiUrl = 'https://test-brew.herokuapp.com'
 
@@ -73,6 +76,16 @@ export const removeSubscription = tag => {
     dispatch({
       type: GET_USER,
       payload: anotherUser
+    })
+  }
+}
+
+export const setUserCookie = input => {
+  Cookies.set('name', input)
+  return dispatch => {
+    dispatch({
+      type: SET_USER_COOKIE,
+      payload: input
     })
   }
 }
