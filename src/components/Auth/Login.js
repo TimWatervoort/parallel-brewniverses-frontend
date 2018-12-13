@@ -52,7 +52,7 @@ class Login extends Component {
               <h4 className='text-center'>Username: </h4>
             </div>
             <div className='col-8'>
-              <input className='form-control' onChange={this.setName} value={this.state.name} type='text' placeholder='Username'/>
+              <input className='form-control' required onChange={this.setName} value={this.state.name} type='text' placeholder='Username'/>
             </div>
           </div>
 
@@ -61,7 +61,7 @@ class Login extends Component {
               <h4 className='text-center'>Password: </h4>
             </div>
             <div className='col-8'>
-              <input className='form-control' onChange={this.setPass} value={this.state.pass} type='password' placeholder='Password'/>
+              <input className='form-control' required onChange={this.setPass} value={this.state.pass} type='password' placeholder='Password'/>
             </div>
           </div>
 
