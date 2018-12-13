@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostPreview from '../PostPreview'
 import HomeChannelHead from './HomeChannelHead'
+import NoSubscriptions from './NoSubscriptions'
 
 class HomeChannel extends Component {
   render(){
@@ -16,7 +17,7 @@ class HomeChannel extends Component {
       <HomeChannelHead />
         <div className='container'>
           <div className='row'>
-            {toRender.length > 0 ? toRender.map(x => <PostPreview key={x.id} post={x} />) : <div></div>}
+            {toRender.length > 0 ? toRender.map(x => <PostPreview key={x.id} post={x} />) : <NoSubscriptions />}
           </div>
         </div>
       </div>
