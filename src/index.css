@@ -47,6 +47,11 @@ body {
   color: #9959D9;
 }
 
+.sub-button:hover{
+  background-color: #5246A6;
+  color: black;
+}
+
 .galaxy-pink {
   background-color: #D285F2;
 }
