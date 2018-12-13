@@ -24,7 +24,7 @@ class Navbar extends Component {
               <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/addpost' : '/signup'}>{loggedIn ? 'New Review' : 'Sign Up'}</Link>
             </div>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/userhome' : '/login'}>{loggedIn ? 'My Profile' : 'Log In'}</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/user' : '/login'}>{loggedIn ? 'My Profile' : 'Log In'}</Link>
             </div>
           </div>
         </div>

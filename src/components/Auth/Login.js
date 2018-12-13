@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { setUserCookie } from '../../actions/users'
+import { bindActionCreators } from 'redux'
 
 class Login extends Component {
 
@@ -29,6 +31,8 @@ class Login extends Component {
       username: this.state.name,
       password: this.state.pass
     }
+    const { setUserCookie } = this.props
+    setUserCookie(info.username)
     console.log(info);
     this.setState({
       name: '',
@@ -80,4 +84,8 @@ const mapStateToProps = state => ({
   users: state.users
 })
 
-export default connect(mapStateToProps)(Login)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  setUserCookie
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
