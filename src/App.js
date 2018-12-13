@@ -7,7 +7,9 @@ import AddPostForm from './components/AddPostForm'
 import HomeChannel from './components/HomeChannel/HomeChannel'
 import Login from './components/Auth/Login'
 import Signup from './components/Auth/Signup'
+import UserHome from './components/User/UserHome'
 import { Route, Redirect } from 'react-router-dom'
+
 
 class App extends Component {
   render() {
@@ -24,6 +26,7 @@ class App extends Component {
         <Route path = '/home' component={HomeChannel}/>
         <Route path = '/login' component={Login}/>
         <Route path = '/signup' component={Signup}/>
+        <Route path = '/user' component={UserHome} />
       </div>
     );
   }
