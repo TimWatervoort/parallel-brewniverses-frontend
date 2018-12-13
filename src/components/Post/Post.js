@@ -49,7 +49,7 @@ class Post extends Component {
 
         <div className='row pb-3'>
           <div className='col-6 text-center'>
-            <img src={post.picture} alt='Brew' className='pp-picture'/>
+            <img src={post.picture} alt='Brew' className='img-fluid'/>
           </div>
           <div className='col-6'>
             <p>{post.content}</p>

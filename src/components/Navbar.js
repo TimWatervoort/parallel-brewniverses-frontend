@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 
 class Navbar extends Component {
   render(){
+
+    const loggedIn = true
+
     return(
       <div>
         <nav className='navbar galaxy-lavender mb-0 pb-0'>
@@ -15,13 +18,13 @@ class Navbar extends Component {
         <div className='container-fluid galaxy-lavender mt-0 text-center'>
           <div className='row'>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to='/home'>My Brewniverses</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/home' : '/all'}>{loggedIn ? 'My Brewniverses' : 'All Brewniverses'}</Link>
             </div>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to='/addpost'>New Review</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/addpost' : '/signup'}>{loggedIn ? 'New Review' : 'Sign Up'}</Link>
             </div>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to='#'>My Profile</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/userhome' : '/login'}>{loggedIn ? 'My Profile' : 'Log In'}</Link>
             </div>
           </div>
         </div>
