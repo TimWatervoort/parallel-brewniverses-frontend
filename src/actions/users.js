@@ -10,7 +10,7 @@ const apiUrl = 'https://test-brew.herokuapp.com'
 const demoUser = {
   id: 1,
   username: 'nickgriff',
-  subscriptions: ['beer', 'amber']
+  channels: ['beer', 'amber']
 }
 
 export const getUser = () => {
@@ -51,11 +51,11 @@ export const addUser = input => {
 }
 
 export const addSubscription = tag => {
-  const updatedTags = [...demoUser.subscriptions, tag]
+  const updatedTags = [...demoUser.channels, tag]
   const newUser = {
     id: 1,
     username: 'nickgriff',
-    subscriptions: updatedTags
+    channels: updatedTags
   }
   return dispatch => {
     dispatch({
@@ -66,11 +66,11 @@ export const addSubscription = tag => {
 }
 
 export const removeSubscription = tag => {
-  const fewerTags = demoUser.subscriptions.filter(x => x !== tag)
+  const fewerTags = demoUser.channels.filter(x => x !== tag)
   const anotherUser = {
     id: 1,
     username: 'nickgriff',
-    subscriptions: fewerTags
+    channels: fewerTags
   }
   return dispatch => {
     dispatch({
@@ -82,10 +82,12 @@ export const removeSubscription = tag => {
 
 export const setUserCookie = input => {
   Cookies.set('name', input)
-  return dispatch => {
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/users/1`)
+    const json = await response.json()
     dispatch({
       type: SET_USER_COOKIE,
-      payload: input
+      payload: json
     })
   }
 }

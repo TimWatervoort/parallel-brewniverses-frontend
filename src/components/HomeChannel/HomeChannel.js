@@ -9,7 +9,7 @@ class HomeChannel extends Component {
     const { posts, user } = this.props
     const toRender = posts.filter(x=>{
       for (var i = 0; i < x.tags.length; i++){
-        return user.subscriptions.includes(x.tags[i])
+        return user.channels.includes(x.tags[i])
       }
     })
     return(

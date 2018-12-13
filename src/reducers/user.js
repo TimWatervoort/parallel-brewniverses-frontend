@@ -7,7 +7,7 @@ const user = (state={}, action) => {
     case ADD_USER:
       return state
     case SET_USER_COOKIE:
-      return state
+      return action.payload
     default:
       return state
   }
