@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addSubscription, removeSubscription } from '../../actions/index'
+import { addSubscription, removeSubscription } from '../../actions/users'
 import { bindActionCreators } from 'redux'
 
 class SingleChannelHead extends Component {

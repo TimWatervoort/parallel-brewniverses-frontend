@@ -1,4 +1,4 @@
-import { GET_USER, ADD_USER } from '../actions/index'
+import { GET_USER, ADD_USER } from '../actions/users'
 
 const user = (state={}, action) => {
   switch(action.type) {

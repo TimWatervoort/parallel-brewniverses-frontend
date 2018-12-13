@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addUser } from '../../actions/index'
+import { addUser } from '../../actions/users'
 
 class Signup extends Component {
 
@@ -13,7 +13,10 @@ class Signup extends Component {
       confPass: '',
       email: '',
       image: '',
-      passMatch: true
+      passMatch: true,
+      nameTaken: false,
+      emailTaken: false,
+      signedUp: false
     }
   }
 
@@ -47,37 +50,70 @@ class Signup extends Component {
     })
   }
 
-  sendSignup = e => {
-    const { addUser } = this.props
+  checkFields = e => {
     e.preventDefault()
+    const { users } = this.props
+    const userEmails = users.map(x => x.email)
+    const userNames = users.map(x => x.username)
+
     if (this.state.pass !== this.state.confPass) {
       this.setState({
         passMatch: false,
+        emailTaken: false,
+        nameTaken: false,
         pass: '',
         confPass: ''
       })
+    } else if (userEmails.includes(this.state.email)) {
+      this.setState({
+        emailTaken: true,
+        nameTaken: false,
+        passMatch: true,
+        email: ''
+      })
+    } else if (userNames.includes(this.state.name)){
+      this.setState({
+        nameTaken: true,
+        emailTaken: false,
+        passMatch: true,
+        name: ''
+      })
     } else {
+      this.sendSignup()
+    }
+
+  }
+
+  sendSignup = e => {
+    const { addUser } = this.props
       const newUser = {
         username: this.state.name,
         password: this.state.pass,
         email: this.state.email,
       }
       addUser(newUser)
-      console.log(newUser)
       this.setState({
         name: '',
         pass: '',
         confPass: '',
         email: '',
         image: '',
-        passMatch: true
+        passMatch: true,
+        emailTaken: false,
+        nameTaken: false,
+        signedUp: true
       })
-    }
   }
 
   render(){
 
     const passMatchError = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>Passwords do not match!</h4></div></div>
+
+    const userNameTaken = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>Username already exists!</h4></div></div>
+
+    const userEmailTaken = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>An account already exists with this email!</h4></div></div>
+
+    const success = <div className='row my-1'><div className='col'><h4 className='text-center text-white'>Welcome to Parallel Brewniverses!</h4></div></div>
 
     return(
       <div className='container mt-3 text-white galaxy-purple'>
@@ -87,15 +123,20 @@ class Signup extends Component {
           </div>
         </div>
         <hr></hr>
+
         {this.state.passMatch ? <div></div> : passMatchError}
-        <form onSubmit={this.sendSignup} className='p-4'>
+        {this.state.nameTaken ? userNameTaken : <div></div>}
+        {this.state.emailTaken ? userEmailTaken : <div></div>}
+        {this.state.signedUp ? success : <div></div>}
+
+        <form onSubmit={this.checkFields} className='p-4'>
 
           <div className='row'>
             <div className='col-4'>
               <h4>Email: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setEmail} value={this.state.email} className='form-control' type='email' placeholder='Email'/>
+              <input onChange={this.setEmail} required value={this.state.email} className='form-control' type='email' placeholder='Email'/>
             </div>
           </div>
 
@@ -104,7 +145,7 @@ class Signup extends Component {
               <h4>Username: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setName} value={this.state.name} className='form-control' type='text' placeholder='Username'/>
+              <input onChange={this.setName} required value={this.state.name} className='form-control' type='text' placeholder='Username'/>
             </div>
           </div>
 
@@ -113,7 +154,7 @@ class Signup extends Component {
               <h4>Password: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setPass} value={this.state.pass} className='form-control' type='password' placeholder='Password'/>
+              <input onChange={this.setPass} required value={this.state.pass} className='form-control' type='password' placeholder='Password'/>
             </div>
           </div>
 
@@ -122,7 +163,7 @@ class Signup extends Component {
               <h4>Confirm Password: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setConfPass} value={this.state.confPass} className='form-control' type='password' placeholder='Password'/>
+              <input onChange={this.setConfPass} required value={this.state.confPass} className='form-control' type='password' placeholder='Password'/>
             </div>
           </div>
 
@@ -146,7 +187,8 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  users: state.users
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
