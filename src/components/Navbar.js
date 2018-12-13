@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class Navbar extends Component {
   render(){
 
-    const loggedIn = true
+    const loggedIn = false
 
     return(
       <div>

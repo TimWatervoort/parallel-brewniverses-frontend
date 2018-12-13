@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { addUser } from '../../actions/index'
 
 class Signup extends Component {
 
@@ -46,6 +48,7 @@ class Signup extends Component {
   }
 
   sendSignup = e => {
+    const { addUser } = this.props
     e.preventDefault()
     if (this.state.pass !== this.state.confPass) {
       this.setState({
@@ -58,8 +61,8 @@ class Signup extends Component {
         username: this.state.name,
         password: this.state.pass,
         email: this.state.email,
-        picture: this.state.image
       }
+      addUser(newUser)
       console.log(newUser)
       this.setState({
         name: '',
@@ -146,4 +149,8 @@ const mapStateToProps = state => ({
   posts: state.posts
 })
 
-export default connect(mapStateToProps)(Signup)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  addUser
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
