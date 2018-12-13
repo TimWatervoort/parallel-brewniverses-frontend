@@ -14,10 +14,12 @@ const demoUser = {
 }
 
 export const getUser = () => {
-  return dispatch => {
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/users/1`)
+    const json = await response.json()
     dispatch({
       type: GET_USER,
-      payload: demoUser
+      payload: json
     })
   }
 }
