@@ -8,7 +8,7 @@ class SingleChannelHead extends Component {
 
   sendSub = e => {
     const { addSubscription, removeSubscription, tag, user } = this.props
-    if (user.subscriptions.includes(tag)) {
+    if (user.channels.includes(tag)) {
       removeSubscription(tag)
     } else {
       addSubscription(tag)
@@ -26,7 +26,7 @@ class SingleChannelHead extends Component {
         <div className='row'>
           <div className='col'>
             <h3 className='brew-header text-center'>
-            {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`} <span onClick={this.sendSub} className='badge badge-dark sub-button galaxy-indigo px-1 py-0'>{user.subscriptions.includes(tag) ? '-' : '+'}</span></h3>
+            {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`} <span onClick={this.sendSub} className='badge badge-dark sub-button galaxy-indigo px-1 py-0'>{user.channels.includes(tag) ? '-' : '+'}</span></h3>
 
           </div>
         </div>

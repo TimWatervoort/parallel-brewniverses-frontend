@@ -41,6 +41,7 @@ class Login extends Component {
   }
 
   render(){
+
     return(
       <div className='container mt-3 text-white galaxy-purple'>
         <div className='row pt-4'>
@@ -81,7 +82,8 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  users: state.users
+  users: state.users,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

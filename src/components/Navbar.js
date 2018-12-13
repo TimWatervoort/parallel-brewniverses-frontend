@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 class Navbar extends Component {
   render(){
-
-    const loggedIn = false
 
     return(
       <div>
@@ -18,13 +17,13 @@ class Navbar extends Component {
         <div className='container-fluid galaxy-lavender mt-0 text-center'>
           <div className='row'>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/home' : '/all'}>{loggedIn ? 'My Brewniverses' : 'All Brewniverses'}</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/home' : '/all'}>{Cookies.get('name') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
             </div>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/addpost' : '/signup'}>{loggedIn ? 'New Review' : 'Sign Up'}</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/addpost' : '/signup'}>{Cookies.get('name') ? 'New Review' : 'Sign Up'}</Link>
             </div>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={loggedIn ? '/user' : '/login'}>{loggedIn ? 'My Profile' : 'Log In'}</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/user' : '/login'}>{Cookies.get('name') ? 'My Profile' : 'Log In'}</Link>
             </div>
           </div>
         </div>
@@ -34,7 +33,8 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  user: state.user
 })
 
 export default connect(mapStateToProps)(Navbar)
