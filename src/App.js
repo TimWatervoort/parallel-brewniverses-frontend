@@ -5,6 +5,8 @@ import SingleChannel from './components/SingleChannel/SingleChannel'
 import Post from './components/Post/Post'
 import AddPostForm from './components/AddPostForm'
 import HomeChannel from './components/HomeChannel/HomeChannel'
+import Login from './components/Auth/Login'
+import Signup from './components/Auth/Signup'
 import { Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
@@ -20,6 +22,8 @@ class App extends Component {
         <Route path = '/post/:id' component={Post}/>
         <Route path = '/addpost' component={AddPostForm}/>
         <Route path = '/home' component={HomeChannel}/>
+        <Route path = '/login' component={Login}/>
+        <Route path = '/signup' component={Signup}/>
       </div>
     );
   }
