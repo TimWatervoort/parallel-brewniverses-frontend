@@ -31,6 +31,7 @@ export const addPost = input => {
       body: JSON.stringify(input)
     })
     const json = await response.json()
+    json.tags = json.tags.map(x => x.tag)
     dispatch({
       type: ADD_POST,
       payload: json
