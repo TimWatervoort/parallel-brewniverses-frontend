@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 export const GET_POSTS = 'GET_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const PATCH_POST = 'PATCH_POST'
@@ -24,10 +26,12 @@ export const getPosts = () => {
 
 export const addPost = input => {
   return async dispatch => {
+    const token = Cookies.get('access_token')
     const response = await fetch(`${apiUrl}/posts/`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
+        "Bearer": token
       },
       body: JSON.stringify(input)
     })
