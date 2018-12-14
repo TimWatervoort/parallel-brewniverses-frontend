@@ -59,6 +59,13 @@ body {
   color: black;
 }
 
+.user-img {
+  max-height: 150px;
+  max-width: auto;
+  border-radius: 5%;
+  border: 3px solid grey;
+}
+
 .galaxy-pink {
   background-color: #D285F2;
 }

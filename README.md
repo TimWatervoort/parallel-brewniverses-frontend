@@ -20,3 +20,6 @@ Shows the login page.
 
 ## /signup
 Shows the signup page.
+
+## /user
+Shows the user's profile.

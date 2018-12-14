@@ -1,4 +1,4 @@
-import { GET_USER, ADD_USER, SET_USER_COOKIE } from '../actions/users'
+import { GET_USER, ADD_USER, SET_USER_COOKIE, LOGOUT } from '../actions/users'
 
 const user = (state={}, action) => {
   switch(action.type) {
@@ -8,6 +8,8 @@ const user = (state={}, action) => {
       return state
     case SET_USER_COOKIE:
       return action.payload
+    case LOGOUT:
+      return {}
     default:
       return state
   }

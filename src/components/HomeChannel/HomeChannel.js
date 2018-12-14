@@ -7,11 +7,21 @@ import NoSubscriptions from './NoSubscriptions'
 class HomeChannel extends Component {
   render(){
     const { posts, user } = this.props
-    const toRender = posts.filter(x=>{
-      for (var i = 0; i < x.tags.length; i++){
-        return user.channels.includes(x.tags[i])
+    let toRender = [];
+    
+    if (user.channels) {
+      const userChannels = user.channels.map(x => x.tag)
+
+      for (let i = 0; i < posts.length; i++){
+        for (let j = 0; j < posts[i].tags.length; j++){
+          if (userChannels.includes(posts[i].tags[j])) {
+            toRender.push(posts[i])
+            break
+          }
+        }
       }
-    })
+    }
+
     return(
       <div>
       <HomeChannelHead />

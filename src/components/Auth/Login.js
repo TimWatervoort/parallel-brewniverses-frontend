@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setUserCookie } from '../../actions/users'
 import { bindActionCreators } from 'redux'
+import { Redirect } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 class Login extends Component {
 
@@ -44,6 +46,9 @@ class Login extends Component {
 
     return(
       <div className='container mt-3 text-white galaxy-purple'>
+
+      {Cookies.get('name') ? <Redirect to='/' /> : <div></div>}
+
         <div className='row pt-4'>
           <div className='col'>
             <h3 className='text-center'>Login</h3>
