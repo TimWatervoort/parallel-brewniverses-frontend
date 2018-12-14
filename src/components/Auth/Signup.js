@@ -99,11 +99,11 @@ class Signup extends Component {
 
     const userEmailTaken = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>An account already exists with this email!</h4></div></div>
 
-    const success = <div className='row my-1'><div className='col'><h4 className='text-center text-white'>Welcome to Parallel Brewniverses!</h4></div></div>
+    const success = <div className='row my-1'><div className='col'><h4 className='text-center text-white'>Welcome to Parallel Brewniverses! Please Log In to continue.</h4></div></div>
 
     return(
       <div className='container mt-3 text-white galaxy-purple'>
-        {Cookies.get('name') ? <Redirect to='/' /> : <div></div>}
+        {Cookies.get('user_id') ? <Redirect to='/' /> : <div></div>}
         <div className='row pt-4'>
           <div className='col'>
             <h3 className='text-center'>Sign Up</h3>
