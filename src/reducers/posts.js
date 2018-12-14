@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, PATCH_POST } from '../actions/index';
+import { GET_POSTS, ADD_POST, PATCH_POST, DELETE_POST } from '../actions/index';
 
 const posts = (state=[], action) => {
   switch(action.type){
@@ -12,6 +12,9 @@ const posts = (state=[], action) => {
       const newState = [...removeOld, action.payload]
       newState.sort((x,y) => x.id-y.id)
       return [...newState]
+    case DELETE_POST:
+      const filteredState = state.filter(x => x.id !== action.payload.id)
+      return filteredState
     default:
       return state;
   }

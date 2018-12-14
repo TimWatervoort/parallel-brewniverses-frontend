@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { upvote, downvote } from '../../actions/index'
+import { upvote, downvote, deletePost } from '../../actions/index'
 import { bindActionCreators } from 'redux'
 
 class Post extends Component {
@@ -28,7 +28,6 @@ class Post extends Component {
     downvote(id, post.score)
   }
 
-
   render(){
     const { posts, match } = this.props
     const id = match.params.id
@@ -37,12 +36,15 @@ class Post extends Component {
     return(
       <div className='galaxy-purple container text-white mb-2 mt-3 rounded'>
         <div className='row pt-3'>
+
           <div className='col-6'>
             <h3>{post.title}</h3>
           </div>
+
           <div className='col-6'>
             <h3>Rating: {post.rating}/5</h3>
           </div>
+
         </div>
 
         <hr></hr>
@@ -88,7 +90,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   upvote,
-  downvote
+  downvote,
+  deletePost
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

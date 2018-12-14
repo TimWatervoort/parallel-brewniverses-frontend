@@ -3,9 +3,7 @@ import Cookies from 'js-cookie'
 export const GET_POSTS = 'GET_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const PATCH_POST = 'PATCH_POST'
-
-
-const authorMap = {1: 'nickgriff'}
+export const DELETE_POST = 'DELETE_POST'
 
 const apiUrl = 'http://test-brew.herokuapp.com'
 
@@ -15,7 +13,6 @@ export const getPosts = () => {
     const json = await response.json()
     json.forEach(x => {
       x.tags = x.tags.map(y => y.tag)
-      x.author = authorMap[x.author]
     })
     dispatch({
       type: GET_POSTS,
@@ -36,7 +33,9 @@ export const addPost = input => {
       body: JSON.stringify(input)
     })
     const json = await response.json()
-    json.tags = json.tags.map(x => x.tag)
+    if (json.tags) {
+      json.tags = json.tags.map(x => x.tag)
+    }
     dispatch({
       type: ADD_POST,
       payload: json
@@ -141,4 +140,22 @@ export const downvote = (id, score) => {
   }
 }
 
-// Actions for users
+export const deletePost = id => {
+  return async dispatch => {
+    const token = Cookies.get('access_token')
+
+    const response = await fetch(`${apiUrl}/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+
+    const json = await response.json()
+    dispatch({
+      type: DELETE_POST,
+      payload: json
+    })
+  }
+}
