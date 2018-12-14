@@ -39,7 +39,7 @@ class SingleChannelHead extends Component {
 
         <div className='row pt-1'>
           <div className='col text-center'>
-            <Link className='btn galaxy-indigo text-white' to='/all'>All Brewniverses</Link>
+            <Link className='btn galaxy-indigo sub-button text-white' to='/all'>All Brewniverses</Link>
           </div>
         </div>
       </div>

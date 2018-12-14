@@ -58,15 +58,16 @@ export const addUser = input => {
 }
 
 export const addSubscription = (input, existing) => {
-  const newTag = {
+  const newTag = { //puts tag into an object
     tag: input
   }
-  const updatedTags = [...existing, newTag]
+  const updatedTags = [...existing, newTag] //spread old tags and add new one to array
   console.log(updatedTags);
   return async dispatch => {
-    const uid = Cookies.get('user_id')
+    const uid = Cookies.get('user_id') //get necessary info
     const token = Cookies.get('access_token')
-    const response = await fetch (`${apiUrl}/users/${uid}`, {
+    console.log(token);
+    const response = await fetch (`${apiUrl}/users/${uid}`, { //send api call
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -75,7 +76,7 @@ export const addSubscription = (input, existing) => {
       body: JSON.stringify({channels: updatedTags})
     })
     const json = await response.json()
-    dispatch({
+    dispatch({ //dispatch to reducer
       type: GET_USER,
       payload: json
     })
@@ -83,11 +84,11 @@ export const addSubscription = (input, existing) => {
 }
 
 export const removeSubscription = (input, existing) => {
-  const trimmedTags = existing.filter(x => x.tag !== input)
+  const trimmedTags = existing.filter(x => x.tag !== input) //filter out the subscription to remove
   const tagsToSend = [];
-  trimmedTags.forEach(x => tagsToSend.push({tag: x.tag}))
+  trimmedTags.forEach(x => tagsToSend.push({tag: x.tag})) //only send back the 'tag' key
 
-  return async dispatch => {
+  return async dispatch => { //api call
     const uid = Cookies.get('user_id')
     const token = Cookies.get('access_token')
     const response = await fetch (`${apiUrl}/users/${uid}`, {
@@ -99,7 +100,7 @@ export const removeSubscription = (input, existing) => {
       body: JSON.stringify({channels: tagsToSend})
     })
     const json = await response.json()
-    dispatch({
+    dispatch({ //dispatch to reducer
       type: GET_USER,
       payload: json
     })
@@ -118,23 +119,23 @@ export const userLogout = () => {
 
 export const userLogin = input => {
   return async dispatch => {
-    const response = await fetch(`${apiUrl}/api/token/`, {
+    const response = await fetch(`${apiUrl}/api/token/`, { //get access token
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(input)
     })
     const json = await response.json()
-    Cookies.set('access_token', json.access)
-    const uid = jwt.decode(json.access)
-    Cookies.set('user_id', uid.user_id)
-    dispatch({
+    Cookies.set('access_token', json.access) //set access token in cookies
+    const uid = jwt.decode(json.access) //get user id from jwt
+    Cookies.set('user_id', uid.user_id) //set user id in cookies
+    dispatch({ //send dispatch to reducer
       type: RECEIVE_JWT,
       payload: json
     })
 
-    const response2 = await fetch(`${apiUrl}/users/${uid.user_id}`)
+    const response2 = await fetch(`${apiUrl}/users/${uid.user_id}`) //get user
     const json2 = await response2.json()
-    dispatch({
+    dispatch({ //send user to reducer
       type: GET_USER,
       payload: json2
     })
