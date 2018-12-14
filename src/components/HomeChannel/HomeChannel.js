@@ -9,7 +9,7 @@ class HomeChannel extends Component {
     const { posts, user } = this.props
     let toRender = [];
 
-    if (user.channels && posts[0].tags) {
+    if (user.channels) {
       const userChannels = user.channels.map(x => x.tag)
 
       for (let i = 0; i < posts.length; i++){
