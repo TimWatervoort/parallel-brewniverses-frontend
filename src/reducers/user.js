@@ -1,15 +1,17 @@
-import { GET_USER, ADD_USER, SET_USER_COOKIE, LOGOUT } from '../actions/users'
+import { GET_USER, ADD_USER, LOGOUT, RECEIVE_JWT } from '../actions/users'
 
 const user = (state={}, action) => {
   switch(action.type) {
     case GET_USER:
       return action.payload
     case ADD_USER:
+      console.log(action.payload);
       return state
-    case SET_USER_COOKIE:
-      return action.payload
     case LOGOUT:
       return {}
+    case RECEIVE_JWT:
+      console.log(action.payload);
+      return state
     default:
       return state
   }

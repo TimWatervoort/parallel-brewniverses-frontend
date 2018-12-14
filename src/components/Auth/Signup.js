@@ -54,9 +54,6 @@ class Signup extends Component {
 
   checkFields = e => {
     e.preventDefault()
-    const { users } = this.props
-    const userEmails = users.map(x => x.email)
-    const userNames = users.map(x => x.username)
 
     if (this.state.pass !== this.state.confPass) {
       this.setState({
@@ -65,20 +62,6 @@ class Signup extends Component {
         nameTaken: false,
         pass: '',
         confPass: ''
-      })
-    } else if (userEmails.includes(this.state.email)) {
-      this.setState({
-        emailTaken: true,
-        nameTaken: false,
-        passMatch: true,
-        email: ''
-      })
-    } else if (userNames.includes(this.state.name)){
-      this.setState({
-        nameTaken: true,
-        emailTaken: false,
-        passMatch: true,
-        name: ''
       })
     } else {
       this.sendSignup()
@@ -92,6 +75,7 @@ class Signup extends Component {
         username: this.state.name,
         password: this.state.pass,
         email: this.state.email,
+        picture: this.state.image
       }
       addUser(newUser)
       this.setState({
