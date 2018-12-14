@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import UserPost from './UserPost'
 
 class UserPosts extends Component {
 
@@ -8,7 +9,7 @@ class UserPosts extends Component {
     const { user } = this.props
     let userPostList = []
     if (user.posts) {
-      userPostList = user.posts.map((post, i) => <li key={i} className="list-group-item galaxy-purple text-white"> <h5>{post.title}</h5></li>)
+      userPostList = user.posts.map((post, i) => <UserPost key={i} post={post}/>)
     }
 
     return (

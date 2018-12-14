@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 
 class UserSubcriptions extends Component {
 
@@ -19,7 +19,7 @@ class UserSubcriptions extends Component {
             <h3 className="pt-3 px-3">Subscriptions</h3>
             <hr></hr>
             <div className="card-body">
-              {userChannels.map((x,i) => <div className='badge badge-dark galaxy-indigo p-2 mx-1' key={i}>{x}</div>)}
+              {userChannels.map((x,i) => <Link to={`/brewniverse/${x}`}className='badge badge-dark galaxy-indigo p-2 mx-1' key={i}>{x}</Link>)}
             </div>
           </div>
         </div>
