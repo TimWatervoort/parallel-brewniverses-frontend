@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-const imgSrc = 'http://placekitten.com/300/300'
-
 class UserPosts extends Component {
 
   render() {
