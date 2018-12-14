@@ -61,7 +61,9 @@ export const upvote = (id, score) => {
     })
     const json = await response.json()
     console.log(json);
-    json.tags = json.tags.map(x => x.tag)
+    if (json.tags) {
+       json.tags = json.tags.map(x => x.tag)
+    }
     dispatch({
       type: PATCH_POST,
       payload: json
@@ -85,7 +87,9 @@ export const downvote = (id, score) => {
       })
     })
     const json = await response.json()
-    json.tags = json.tags.map(x => x.tag)
+    if (json.tags) {
+       json.tags = json.tags.map(x => x.tag)
+    }
     dispatch({
       type: PATCH_POST,
       payload: json

@@ -8,7 +8,7 @@ export const SET_USER_COOKIE = 'SET_USER_COOKIE'
 export const LOGOUT = 'LOGOUT'
 export const RECEIVE_JWT = 'RECEIVE_JWT'
 
-const apiUrl = 'https://test-brew.herokuapp.com'
+const apiUrl = 'http://test-brew.herokuapp.com'
 
 export const getUser = () => {
   return async dispatch => {
