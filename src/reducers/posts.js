@@ -13,8 +13,8 @@ const posts = (state=[], action) => {
       newState.sort((x,y) => x.id-y.id)
       return [...newState]
     case DELETE_POST:
-      const filteredState = state.filter(x => x.id !== action.payload.id)
-      return filteredState
+      const filteredState = state.filter(x => x.id !== action.payload)
+      return [...filteredState]
     default:
       return state;
   }

@@ -6,7 +6,7 @@ class UserPosts extends Component {
 
   render() {
 
-    const { user } = this.props
+    const { user, posts } = this.props
     let userPostList = []
     if (user.posts) {
       userPostList = user.posts.map((post, i) => <UserPost key={i} post={post}/>)
