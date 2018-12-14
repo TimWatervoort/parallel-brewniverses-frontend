@@ -7,7 +7,7 @@ export const PATCH_POST = 'PATCH_POST'
 
 const authorMap = {1: 'nickgriff'}
 
-const apiUrl = 'https://test-brew.herokuapp.com'
+const apiUrl = 'http://test-brew.herokuapp.com'
 
 export const getPosts = () => {
   return async dispatch => {
@@ -31,7 +31,7 @@ export const addPost = input => {
       method: 'POST',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Bearer": token
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(input)
     })
@@ -44,21 +44,53 @@ export const addPost = input => {
   }
 }
 
+
+const checkVote = id => {
+  if (localStorage.getItem(`upvoted${id}`)) {
+    return 'downvote_required'
+  } else if (localStorage.getItem(`downvoted${id}`)) {
+    return 'upvote_required'
+  } else {
+    return 'clear'
+  }
+}
+
 export const upvote = (id, score) => {
+  const token = Cookies.get('access_token')
   let upvoted = parseInt(score);
-  upvoted++
+
+  switch(checkVote(id)){      // checks if the item has already been voted on
+    case 'downvote_required':
+      localStorage.removeItem(`upvoted${id}`)
+      upvoted--
+      break
+    case 'upvote_required':
+      localStorage.removeItem(`downvoted${id}`)
+      localStorage.setItem(`upvoted${id}`, true)
+      upvoted += 2
+      break
+    default:
+      localStorage.setItem(`upvoted${id}`, true)
+      upvoted++
+      break
+  }
+
   return async dispatch => {
-    const response = await fetch(`${apiUrl}/posts/${id}`, {
+    const response = await fetch(`${apiUrl}/posts/${id}?vote=true`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         score: upvoted
       })
     })
     const json = await response.json()
-    json.tags = json.tags.map(x => x.tag)
+    console.log(json);
+    if (json.tags) {
+       json.tags = json.tags.map(x => x.tag)
+    }
     dispatch({
       type: PATCH_POST,
       payload: json
@@ -66,21 +98,42 @@ export const upvote = (id, score) => {
   }
 }
 
+
 export const downvote = (id, score) => {
+  const token = Cookies.get('access_token')
   let downvoted = parseInt(score);
-  downvoted--
+
+  switch(checkVote(id)){          // checks if the item has already been voted on
+    case 'downvote_required':
+      localStorage.removeItem(`upvoted${id}`)
+      localStorage.setItem(`downvoted${id}`, true)
+      downvoted -= 2
+      break
+    case 'upvote_required':
+      localStorage.removeItem(`downvoted${id}`)
+      downvoted ++
+      break
+    default:
+      localStorage.setItem(`downvoted${id}`, true)
+      downvoted --
+      break
+  }
+
   return async dispatch => {
-    const response = await fetch(`${apiUrl}/posts/${id}`, {
+    const response = await fetch(`${apiUrl}/posts/${id}?vote=true`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         score: downvoted
       })
     })
     const json = await response.json()
-    json.tags = json.tags.map(x => x.tag)
+    if (json.tags) {
+       json.tags = json.tags.map(x => x.tag)
+    }
     dispatch({
       type: PATCH_POST,
       payload: json
