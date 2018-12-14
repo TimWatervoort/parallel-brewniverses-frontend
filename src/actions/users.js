@@ -65,10 +65,12 @@ export const addSubscription = (input, existing) => {
   console.log(updatedTags);
   return async dispatch => {
     const uid = Cookies.get('user_id')
+    const token = Cookies.get('access_token')
     const response = await fetch (`${apiUrl}/users/${uid}`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
+        "Bearer": token
       },
       body: JSON.stringify({channels: updatedTags})
     })
@@ -84,12 +86,15 @@ export const removeSubscription = (input, existing) => {
   const trimmedTags = existing.filter(x => x.tag !== input)
   const tagsToSend = [];
   trimmedTags.forEach(x => tagsToSend.push({tag: x.tag}))
+
   return async dispatch => {
     const uid = Cookies.get('user_id')
+    const token = Cookies.get('access_token')
     const response = await fetch (`${apiUrl}/users/${uid}`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
+        "Bearer": token
       },
       body: JSON.stringify({channels: tagsToSend})
     })
