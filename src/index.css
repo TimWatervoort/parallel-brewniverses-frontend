@@ -1,3 +1,24 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1B1640;
+}
+
+.nav-link {
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nav-symbol{
+  color: #D285F2;
+  font-size: 40px;
+}
+
+.nav-title{
+  font-size: 20px;
+}
+
 .pp-image {
   height: 200px;
   width: auto;
@@ -21,20 +42,6 @@
 }
 
 .post-bar {
-  font-size: 20px;
-}
-
-body {
-  background-color: #1B1640;
-  font-family: Georgia, serif;
-}
-
-.nav-symbol{
-  color: #D285F2;
-  font-size: 40px;
-}
-
-.nav-title{
   font-size: 20px;
 }
 

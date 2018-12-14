@@ -4,33 +4,48 @@ import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 class Navbar extends Component {
-  render(){
+ 
+  // render() {
+  //   return(
+  //     <div>
+  //       <nav className='navbar mb-0 pb-0'>
+  //         <Link className='mx-auto nav-title' to='/all'>Parallel Brewniverses</Link>
+  //       </nav>
+  //       <div className='container-fluid  mt-0 text-center'>
+  //         <Link className="fab fa-react nav-symbol mt-2" to='/all'></Link>
+  //       </div>
+  //       <div className='container-fluid mt-0 text-center'>
+  //         <div className='row'>
+  //           <div className='col'>
+  //             <Link className="btn mb-1" to={Cookies.get('name') ? '/home' : '/all'}>{Cookies.get('name') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
+  //           </div>
+  //           <div className='col'>
+  //             <Link className="btn mb-1" to={Cookies.get('name') ? '/addpost' : '/signup'}>{Cookies.get('name') ? 'New Review' : 'Sign Up'}</Link>
+  //           </div>
+  //           <div className='col'>
+  //             <Link className="btn mb-1" to={Cookies.get('name') ? '/user' : '/login'}>{Cookies.get('name') ? 'My Profile' : 'Log In'}</Link>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
-    return(
-      <div>
-        <nav className='navbar galaxy-lavender mb-0 pb-0'>
-          <Link className='mx-auto text-gpink nav-title' to='/all'>Parallel Brewniverses</Link>
-        </nav>
-        <div className='container-fluid galaxy-lavender mt-0 text-center'>
-          <Link className="fab fa-react nav-symbol mt-2" to='/all'></Link>
-        </div>
-        <div className='container-fluid galaxy-lavender mt-0 text-center'>
-          <div className='row'>
-            <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/home' : '/all'}>{Cookies.get('name') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
-            </div>
-            <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/addpost' : '/signup'}>{Cookies.get('name') ? 'New Review' : 'Sign Up'}</Link>
-            </div>
-            <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/user' : '/login'}>{Cookies.get('name') ? 'My Profile' : 'Log In'}</Link>
-            </div>
-          </div>
-        </div>
-      </div>
+  render() {
+    return (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand" to="/all">
+          <img src={require('./Icon/pb_icon.svg')} height="40" class="d-inline-block align-top ml-1" alt="" />
+          <img src={require('./Icon/pb_type.svg')} height="40" class="d-inline-block align-top mx-3" alt="" />
+        </Link>
+        <Link className="btn mb-1 nav-link" to={Cookies.get('name') ? '/home' : '/all'}>{Cookies.get('name') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
+        <Link className="btn mb-1 nav-link" to={Cookies.get('name') ? '/addpost' : '/signup'}>{Cookies.get('name') ? 'New Review' : 'Sign Up'}</Link>
+        <Link className="btn mb-1 nav-link" to={Cookies.get('name') ? '/user' : '/login'}>{Cookies.get('name') ? 'My Profile' : 'Log In'}</Link>
+      </nav>
     )
   }
 }
+
 
 const mapStateToProps = state => ({
   posts: state.posts,
