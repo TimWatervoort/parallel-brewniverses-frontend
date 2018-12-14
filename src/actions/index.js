@@ -31,7 +31,7 @@ export const addPost = input => {
       method: 'POST',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Bearer": token
+        "Authorization": {"Bearer": token}
       },
       body: JSON.stringify(input)
     })
@@ -45,6 +45,7 @@ export const addPost = input => {
 }
 
 export const upvote = (id, score) => {
+  const token = Cookies.get('access_token')
   let upvoted = parseInt(score);
   upvoted++
   return async dispatch => {
@@ -52,12 +53,14 @@ export const upvote = (id, score) => {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
+        "Authorization": {"Bearer": token}
       },
       body: JSON.stringify({
         score: upvoted
       })
     })
     const json = await response.json()
+    console.log(json);
     json.tags = json.tags.map(x => x.tag)
     dispatch({
       type: PATCH_POST,
@@ -67,6 +70,7 @@ export const upvote = (id, score) => {
 }
 
 export const downvote = (id, score) => {
+  const token = Cookies.get('access_token')
   let downvoted = parseInt(score);
   downvoted--
   return async dispatch => {
@@ -74,6 +78,7 @@ export const downvote = (id, score) => {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
+        "Authorization": {"Bearer": token}
       },
       body: JSON.stringify({
         score: downvoted
