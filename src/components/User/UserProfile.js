@@ -12,13 +12,13 @@ class UserProfile extends Component {
     return (
       <div className="row my-3">
 
-        <div className="col-8">
+        <div className="col-md-8 mt-3 py-1 col-sm-12">
           <div className='card galaxy-purple text-white rounded'>
           <div className='card-body'>
 
             <div className="row ">
               <div className="col-5">
-                <img src={imgSrc} alt="user profile" className="img-thumbnail my-3" />
+                <img src={imgSrc} alt="user profile" className="user-img img-fluid my-3" />
               </div>
               <div className="col-7">
                 <h3 className="py-1"><strong>User: </strong>{user.username}</h3>
@@ -31,7 +31,7 @@ class UserProfile extends Component {
 
         </div>
 
-        <div className="col-4">
+        <div className="col-md-4 mt-3 col-sm-12">
           <div className="galaxy-purple text-white rounded">
             <h3 className="pt-3 px-3">Favorite Drinks</h3>
             <ul className="list-group list-group-flush pt-2 pb-3 px-3">
