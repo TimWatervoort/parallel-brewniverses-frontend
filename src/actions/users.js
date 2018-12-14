@@ -4,6 +4,7 @@ export const GET_USER = 'GET_USER'
 export const GET_USERS = 'GET_USERS'
 export const ADD_USER = 'ADD_USER'
 export const SET_USER_COOKIE = 'SET_USER_COOKIE'
+export const LOGOUT = 'LOGOUT'
 
 const apiUrl = 'https://test-brew.herokuapp.com'
 
@@ -98,6 +99,15 @@ export const setUserCookie = input => {
     dispatch({
       type: SET_USER_COOKIE,
       payload: json
+    })
+  }
+}
+
+export const userLogout = () => {
+  Cookies.remove('name')
+  return dispatch => {
+    dispatch({
+      type: LOGOUT
     })
   }
 }
