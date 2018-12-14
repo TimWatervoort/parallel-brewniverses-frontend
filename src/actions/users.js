@@ -7,12 +7,6 @@ export const SET_USER_COOKIE = 'SET_USER_COOKIE'
 
 const apiUrl = 'https://test-brew.herokuapp.com'
 
-const demoUser = {
-  id: 1,
-  username: 'nickgriff',
-  channels: ['beer', 'amber']
-}
-
 export const getUser = () => {
   return async dispatch => {
     const response = await fetch(`${apiUrl}/users/1`)
@@ -52,32 +46,46 @@ export const addUser = input => {
   }
 }
 
-export const addSubscription = tag => {
-  const updatedTags = [...demoUser.channels, tag]
-  const newUser = {
-    id: 1,
-    username: 'nickgriff',
-    channels: updatedTags
+export const addSubscription = (input, existing) => {
+  const newTag = {
+    tag: input
   }
-  return dispatch => {
+  const updatedTags = [...existing, newTag]
+  console.log(updatedTags);
+  return async dispatch => {
+    const response = await fetch (`${apiUrl}/users/1`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({channels: updatedTags})
+    })
+    const json = await response.json()
     dispatch({
       type: GET_USER,
-      payload: newUser
+      payload: json
     })
   }
 }
 
-export const removeSubscription = tag => {
-  const fewerTags = demoUser.channels.filter(x => x !== tag)
-  const anotherUser = {
-    id: 1,
-    username: 'nickgriff',
-    channels: fewerTags
-  }
-  return dispatch => {
+export const removeSubscription = (input, existing) => {
+  const trimmedTags = existing.filter(x => x.tag !== input)
+  const tagsToSend = [];
+  trimmedTags.forEach(x => tagsToSend.push({tag: x.tag}))
+  console.log(tagsToSend);
+  return async dispatch => {
+    const response = await fetch (`${apiUrl}/users/1`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({channels: tagsToSend})
+    })
+    const json = await response.json()
+    console.log(json);
     dispatch({
       type: GET_USER,
-      payload: anotherUser
+      payload: json
     })
   }
 }

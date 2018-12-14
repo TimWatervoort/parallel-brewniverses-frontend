@@ -8,10 +8,11 @@ class SingleChannelHead extends Component {
 
   sendSub = e => {
     const { addSubscription, removeSubscription, tag, user } = this.props
-    if (user.channels.includes(tag)) {
-      removeSubscription(tag)
+    const userChannels = user.channels.map(x => x.tag)
+    if (userChannels.includes(tag)) {
+      removeSubscription(tag, user.channels)
     } else {
-      addSubscription(tag)
+      addSubscription(tag, user.channels)
     }
   }
 
@@ -21,12 +22,17 @@ class SingleChannelHead extends Component {
     const capitalLetter = firstLetter[0].toUpperCase()
     const capitalized = tag.replace(firstLetter[0], capitalLetter)
 
+    let userChannels = []
+    if (user.channels){
+      userChannels = user.channels.map(x => x.tag)
+    }
+
     return(
       <div className='container galaxy-purple my-3 py-3 rounded'>
         <div className='row'>
           <div className='col'>
             <h3 className='brew-header text-center'>
-            {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`} <span onClick={this.sendSub} className='badge badge-dark sub-button galaxy-indigo px-1 py-0'>{user.channels.includes(tag) ? '-' : '+'}</span></h3>
+            {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`} <span onClick={this.sendSub} className='badge badge-dark sub-button galaxy-indigo px-1 py-0'>{userChannels.includes(tag) ? '-' : '+'}</span></h3>
 
           </div>
         </div>

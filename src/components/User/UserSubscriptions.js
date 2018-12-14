@@ -1,32 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-const user = {
-  subs: [
-    "beer",
-    "stout",
-    "north coast",
-    "imperial",
-  ]
-}
 
 class UserSubcriptions extends Component {
 
   render() {
+
+    const { user } = this.props
+    let userChannels = [];
+    if (user.channels) {
+      userChannels = user.channels.map(x => x.tag)
+    }
+
     return (
       <div className="row my-3">
         <div className="col-12">
-          <div className="bg-light rounded">
-            <h3 className="py-3 px-3">Subscriptions</h3>
-            <ul className="list-group pb-3 px-3">
-              {
-                user.subs.map((sub, i) => (
-                  <li key={i} className="list-group-item bg-transparent">
-                    <h5>{sub}</h5>
-                  </li>
-                ))
-              }
-            </ul>
+          <div className="galaxy-purple card text-white rounded">
+            <h3 className="pt-3 px-3">Subscriptions</h3>
+            <hr></hr>
+            <div className="card-body">
+              {userChannels.map((x,i) => <div className='badge badge-dark galaxy-indigo p-2 mx-1' key={i}>{x}</div>)}
+            </div>
           </div>
         </div>
       </div>
@@ -34,4 +28,9 @@ class UserSubcriptions extends Component {
   }
 }
 
-export default UserSubcriptions
+const mapStateToProps = state => ({
+  posts: state.posts,
+  user: state.user
+})
+
+export default connect(mapStateToProps)(UserSubcriptions)
