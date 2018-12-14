@@ -7,10 +7,15 @@ class UserPosts extends Component {
   render() {
 
     const { user, posts } = this.props
-    let userPostList = []
-    if (user.posts) {
-      userPostList = user.posts.map((post, i) => <UserPost key={i} post={post}/>)
+
+    if (!user.posts) {
+      return (
+        <div></div>
+      )
     }
+
+    const postsToUse = posts.filter(x => x.authorId === user.id)
+    const userPostList = postsToUse.map((post, i) => <UserPost key={i} post={post}/>)
 
     return (
       <div className="row my-3">
