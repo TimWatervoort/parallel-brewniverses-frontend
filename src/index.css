@@ -46,6 +46,14 @@ body {
   color: red;
 }
 
+.upvoted {
+  color: blue;
+}
+
+.downvoted {
+  color: red;
+}
+
 .post-bar {
   font-size: 20px;
 }
