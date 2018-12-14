@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setUserCookie } from '../../actions/users'
+import { userLogin } from '../../actions/users'
 import { bindActionCreators } from 'redux'
 import { Redirect } from 'react-router-dom'
 import Cookies from 'js-cookie'
@@ -33,21 +33,22 @@ class Login extends Component {
       username: this.state.name,
       password: this.state.pass
     }
-    const { setUserCookie } = this.props
-    setUserCookie(info.username)
-    console.log(info);
+    const { userLogin } = this.props
+    userLogin(info)
     this.setState({
       name: '',
       pass: ''
     })
   }
 
+
+
   render(){
 
     return(
       <div className='container mt-3 text-white galaxy-purple'>
 
-      {Cookies.get('name') ? <Redirect to='/' /> : <div></div>}
+        {Cookies.get('user_id') ? <Redirect to='/' /> : <div></div>}
 
         <div className='row pt-4'>
           <div className='col'>
@@ -92,7 +93,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  setUserCookie
+  userLogin
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

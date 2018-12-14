@@ -22,7 +22,7 @@ class UserProfile extends Component {
 
       <div className="row my-3">
 
-      {Cookies.get('name') ? <div></div> : <Redirect to='/' />}
+      {Cookies.get('user_id') ? <div></div> : <Redirect to='/' />}
 
         <div className="col-md-8 mt-3 py-1 col-sm-12">
           <div className='card galaxy-purple text-white rounded'>
@@ -35,7 +35,7 @@ class UserProfile extends Component {
               <div className="col-7">
                 <h3 className="py-1"><strong>User: </strong>{user.username}</h3>
                 <h3 className="py-1"><strong>Posts: </strong>{user.posts ? user.posts.length : 0}</h3>
-                {Cookies.get('name') ? <button onClick={this.logout} className='btn galaxy-indigo text-white sub-button'>Log Out</button> : <div></div>}
+                {Cookies.get('user_id') ? <button onClick={this.logout} className='btn galaxy-indigo text-white sub-button'>Log Out</button> : <div></div>}
               </div>
             </div>
 

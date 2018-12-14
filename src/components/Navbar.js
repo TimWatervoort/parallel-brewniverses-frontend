@@ -17,13 +17,13 @@ class Navbar extends Component {
         <div className='container-fluid galaxy-lavender mt-0 text-center'>
           <div className='row'>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/home' : '/all'}>{Cookies.get('name') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('user_id') ? '/home' : '/all'}>{Cookies.get('user_id') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
             </div>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/addpost' : '/signup'}>{Cookies.get('name') ? 'New Review' : 'Sign Up'}</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('user_id') ? '/addpost' : '/signup'}>{Cookies.get('user_id') ? 'New Review' : 'Sign Up'}</Link>
             </div>
             <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('name') ? '/user' : '/login'}>{Cookies.get('name') ? 'My Profile' : 'Log In'}</Link>
+              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('user_id') ? '/user' : '/login'}>{Cookies.get('user_id') ? 'My Profile' : 'Log In'}</Link>
             </div>
           </div>
         </div>
