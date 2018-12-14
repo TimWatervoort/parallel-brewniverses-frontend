@@ -49,7 +49,7 @@ export const upvote = (id, score) => {
   let upvoted = parseInt(score);
   upvoted++
   return async dispatch => {
-    const response = await fetch(`${apiUrl}/posts/${id}`, {
+    const response = await fetch(`${apiUrl}/posts/${id}?vote=true`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -76,7 +76,7 @@ export const downvote = (id, score) => {
   let downvoted = parseInt(score);
   downvoted--
   return async dispatch => {
-    const response = await fetch(`${apiUrl}/posts/${id}`, {
+    const response = await fetch(`${apiUrl}/posts/${id}?vote=true`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
