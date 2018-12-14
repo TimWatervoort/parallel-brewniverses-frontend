@@ -5,6 +5,7 @@ import { userLogout } from '../../actions/users'
 import Cookies from 'js-cookie'
 import { Redirect } from 'react-router-dom'
 import Favorite from './Favorite'
+import StaticFavorite from './StaticFavorite'
 
 const imgSrc = 'http://placekitten.com/300/300'
 
@@ -28,7 +29,7 @@ class UserProfile extends Component {
       {Cookies.get('user_id') ? <div></div> : <Redirect to='/' />}
 
         <div className="col-md-8 mt-3 py-1 col-sm-12">
-          <div className='card galaxy-purple text-white rounded'>
+          <div className='card py-2 galaxy-purple text-white rounded'>
           <div className='card-body'>
 
             <div className="row ">
@@ -49,9 +50,9 @@ class UserProfile extends Component {
 
         <div className="col-md-4 mt-3 col-sm-12">
           <div className="galaxy-purple text-white rounded">
-            <h3 className="pt-3 px-3">Favorite Drinks</h3>
+            <h3 className="pt-2 px-3">Favorite Drinks</h3>
             <ul className="list-group list-group-flush pt-2 pb-3 px-3">
-              {favorites.map((x,i) => <Favorite key={i} id={x} />)}
+              {Cookies.get('user_id') === `${user.id}` ? favorites.map((x,i) => <Favorite key={i} id={x} />) : favorites.map((x,i) => <StaticFavorite key={i} id={x} />)}
             </ul>
           </div>
         </div>
