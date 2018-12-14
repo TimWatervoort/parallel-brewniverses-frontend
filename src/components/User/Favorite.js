@@ -19,7 +19,7 @@ class Favorite extends Component {
   }
 
   changeItem = e => {
-    console.log('submitting');
+    e.preventDefault()
     const { id } = this.props
     localStorage.setItem(`fav_${id}`, this.state.item)
     this.setState({
@@ -38,7 +38,7 @@ class Favorite extends Component {
     const { id } = this.props
     const item = localStorage.getItem(`fav_${id}`)
 
-    const editForm = <form onBlur={this.changeItem}><input className='form-control' type='text' value={this.state.item} onChange={this.setItem}/></form>
+    const editForm = <form onSubmit={this.changeItem} onBlur={this.changeItem}><input className='form-control' type='text' value={this.state.item} onChange={this.setItem}/></form>
 
     return(
       <li className="list-group-item bg-transparent">
