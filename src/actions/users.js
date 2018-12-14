@@ -71,7 +71,7 @@ export const addSubscription = (input, existing) => {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": {"Bearer": token}
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({channels: updatedTags})
     })
@@ -95,7 +95,7 @@ export const removeSubscription = (input, existing) => {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": {"Bearer": token}
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({channels: tagsToSend})
     })

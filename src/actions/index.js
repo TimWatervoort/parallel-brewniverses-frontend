@@ -7,7 +7,7 @@ export const PATCH_POST = 'PATCH_POST'
 
 const authorMap = {1: 'nickgriff'}
 
-const apiUrl = 'https://test-brew.herokuapp.com'
+const apiUrl = 'http://test-brew.herokuapp.com'
 
 export const getPosts = () => {
   return async dispatch => {
@@ -31,7 +31,7 @@ export const addPost = input => {
       method: 'POST',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": {"Bearer": token}
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(input)
     })
@@ -53,7 +53,7 @@ export const upvote = (id, score) => {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": {"Bearer": token}
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         score: upvoted
@@ -78,7 +78,7 @@ export const downvote = (id, score) => {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": {"Bearer": token}
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         score: downvoted
