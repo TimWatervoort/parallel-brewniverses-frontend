@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { userLogout } from '../../actions/users'
 import Cookies from 'js-cookie'
 import { Redirect } from 'react-router-dom'
+import Favorite from './Favorite'
 
 const imgSrc = 'http://placekitten.com/300/300'
 
@@ -15,6 +16,8 @@ class UserProfile extends Component {
   }
 
   render() {
+
+    const favorites = [1,2,3]
 
     const { user } = this.props
 
@@ -48,9 +51,7 @@ class UserProfile extends Component {
           <div className="galaxy-purple text-white rounded">
             <h3 className="pt-3 px-3">Favorite Drinks</h3>
             <ul className="list-group list-group-flush pt-2 pb-3 px-3">
-              <li className="list-group-item bg-transparent">Old Rasputin</li>
-              <li className="list-group-item bg-transparent">Coffee</li>
-              <li className="list-group-item bg-transparent">Beer</li>
+              {favorites.map((x,i) => <Favorite key={i} id={x} />)}
             </ul>
           </div>
         </div>
