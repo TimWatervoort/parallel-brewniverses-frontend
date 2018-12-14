@@ -144,7 +144,7 @@ export const deletePost = id => {
   return async dispatch => {
     const token = Cookies.get('access_token')
 
-    const response = await fetch(`${apiUrl}/posts/${id}`, {
+    await fetch(`${apiUrl}/posts/${id}`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -152,10 +152,9 @@ export const deletePost = id => {
       }
     })
 
-    const json = await response.json()
     dispatch({
       type: DELETE_POST,
-      payload: json
+      payload: id
     })
   }
 }
