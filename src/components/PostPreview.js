@@ -62,51 +62,39 @@ class PostPreview extends Component {
     // )
 
     return (
-      <div className='col-lg-6 col-md-12'>
-
-        <div className='card my-2 shadow'>
-
-          <div className='card-body'>
-
-            <div className="row">
-
-              <div className="col-3">
-                  <img className='pp-image mr-3 img-fluid' alt='Brew' src={post.picture}></img>
+      <div className='col-lg-6 col-md-12 mb-3'>
+        <div className='card my-2 shadow h-100'>
+          <div className='card-body pp-card-body '>
+            <div className="row ">
+              <div className="col-2 ">
+                  <img className='pp-image img-fluid' alt='Brew' src={post.picture}></img>
               </div>
-
-              <div className="col-9 border">
-                <div className="row">
+              <div className="col-8 ">
+                <div>
                   <h5 className='card-title pp-title'>{post.title}</h5>
+                  <h6 className="text-muted">Rating: {post.rating}/5</h6>
                   <hr></hr>
                 </div>
-                <div className='row'>
-                  <div className='row text-center mt-3 post-bar'>
-                    <div className='col-4'>
-                      <p>
-                        <i onClick={this.sendUpvote} className={`${localStorage.getItem(`upvoted${post.id}`) ? 'upvoted' : 'uparrow'} mr-2 fas fa-arrow-up`}></i>
-                    {post.score}
+              </div>
+              <div className="col-2 ">
+                <div>
+                  <i onClick={this.sendUpvote} className={`${localStorage.getItem(`upvoted${post.id}`) ? 'upvoted' : 'uparrow'} mr-2 fas fa-arrow-up`}></i>
+                  {post.score}
                   <i onClick={this.sendDownvote} className={`${localStorage.getItem(`downvoted${post.id}`) ? 'downvoted' : 'downarrow'} ml-2 fas fa-arrow-down`}></i>
-                      </p>
-                    </div>
-                    <div className='col-4'>
-                      <p>Rating: {post.rating}/5</p>
-                    </div>
-                    <div className='col-4'>
-                      <Link className='btn galaxy-lavender text-white' to={`/post/${post.id}`}>View</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='row'>
-                  {
-                    post.tags ? post.tags.map((x, i) => <Link className='badge badge-dark galaxy-lavender text-white p-2 mr-2' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : null
-                  }
                 </div>
               </div>
-
             </div>
-
           </div>
-
+          <div className="card-footer pp-footer-tags bg-transparent border-white">
+            {
+              post.tags ? post.tags.map((x, i) => <Link className='badge badge-dark galaxy-lavender text-white p-2 mr-2' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : null
+            }
+          </div>
+          <div className="card-footer pp-footer-view">
+            <Link className='float-right text-secondary' to={`/post/${post.id}`}>
+              View <i className="ml-1 fas fa-arrow-right"></i>
+            </Link>
+          </div>
         </div>
       </div>
     )

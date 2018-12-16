@@ -19,20 +19,50 @@ body {
   font-size: 20px;
 }
 
+/* POST PREVIEW CARDS */
+
 .pp-title {
-  font-weight: medium;
+  /* font-family: 'Roboto Condensed', sans-serif; */
+  /* font-weight: bold; */
+  /* font-size: 1.25em; */
   /* letter-spacing: 0.05em; */
+  /* font-weight: bold; */
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.1em; */
 }
 
 .pp-image {
-  height: auto;
-  max-width: 100%;
+  /* height: auto; */
+  /* max-width: 100%; */
+  border-radius: .15em;
+  /* border: 1px solid grey; */
+  /* max-height: 6em; */
 }
 
 .pp-card {
   background-color: #9959D9;
   color: white;
 }
+
+.pp-card-body {
+  padding-top: 1.25rem;
+  padding-bottom: 0em;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+}
+
+.pp-footer-tags {
+  padding: 0rem 0rem .5rem 1.25rem;
+}
+
+.pp-footer-view {
+  padding: .25rem 1.25rem .25rem 0rem;
+}
+
+.pp-footer.pp-footer-view:hover {
+  background-color: #1B1640;
+}
+
 
 .edit-input {
   width: 100px;
