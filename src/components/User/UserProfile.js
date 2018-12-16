@@ -28,32 +28,32 @@ class UserProfile extends Component {
 
       {Cookies.get('user_id') ? <div></div> : <Redirect to='/' />}
 
-        <div className="col-md-8 mt-3 py-1 col-sm-12">
-          <div className='card py-2 galaxy-purple text-white rounded'>
-          <div className='card-body'>
-
-            <div className="row ">
-              <div className="col-5">
-                <img src={imgSrc} alt="user profile" className="user-img img-fluid my-3" />
-              </div>
-              <div className="col-7">
-                <h3 className="py-1"><strong>User: </strong>{user.username}</h3>
-                <h3 className="py-1"><strong>Posts: </strong>{user.posts ? user.posts.length : 0}</h3>
-                {Cookies.get('user_id') ? <button onClick={this.logout} className='btn galaxy-indigo text-white sub-button'>Log Out</button> : <div></div>}
+        <div className="col-md-8 mt-3 col-sm-12">
+          <div className='card h-100 bg-light'>
+            <div className='card-body'>
+              <div className="row">
+                <div className="col-5">
+                  <img src={imgSrc} alt="user profile" className="user-img img-fluid my-3" />
+                </div>
+                <div className="col-7">
+                  <h3 className="py-1"><strong>User: </strong>{user.username}</h3>
+                  <h3 className="py-1"><strong>Posts: </strong>{user.posts ? user.posts.length : 0}</h3>
+                  {Cookies.get('user_id') ? <button onClick={this.logout} className='btn galaxy-indigo text-white sub-button'>Log Out</button> : <div></div>}
+                </div>
               </div>
             </div>
-
-          </div>
           </div>
 
         </div>
 
         <div className="col-md-4 mt-3 col-sm-12">
-          <div className="galaxy-purple text-white rounded">
-            <h3 className="pt-2 px-3">Favorite Drinks</h3>
-            <ul className="list-group list-group-flush pt-2 pb-3 px-3">
-              {Cookies.get('user_id') === `${user.id}` ? favorites.map((x,i) => <Favorite key={i} id={x} />) : favorites.map((x,i) => <StaticFavorite key={i} id={x} />)}
-            </ul>
+          <div className="card h-100 bg-light">
+            <div className='card-body'>
+              <h3 className="pt-2 px-3">Favorite Drinks</h3>
+              <ul className="list-group list-group-flush pt-2 pb-3 px-3">
+                {Cookies.get('user_id') === `${user.id}` ? favorites.map((x, i) => <Favorite key={i} id={x} />) : favorites.map((x, i) => <StaticFavorite key={i} id={x} />)}
+              </ul>
+            </div>
           </div>
         </div>
 

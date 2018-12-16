@@ -15,7 +15,7 @@ class UserSubcriptions extends Component {
     return (
       <div className="row my-3">
         <div className="col-12">
-          <div className="galaxy-purple card text-white rounded">
+          <div className="card bg-light">
             <h3 className="pt-3 px-3">Subscriptions</h3>
             <hr></hr>
             <div className="card-body">

@@ -102,7 +102,7 @@ class Signup extends Component {
     const success = <div className='row my-1'><div className='col'><h4 className='text-center text-white'>Welcome to Parallel Brewniverses! Please Log In to continue.</h4></div></div>
 
     return(
-      <div className='container mt-3 text-white galaxy-purple'>
+      <div className='container mt-3 bg-light rounded'>
         {Cookies.get('user_id') ? <Redirect to='/' /> : <div></div>}
         <div className='row pt-4'>
           <div className='col'>

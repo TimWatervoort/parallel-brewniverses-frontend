@@ -37,7 +37,7 @@ body {
 
 .pp-title {
   /* font-family: 'Roboto Condensed', sans-serif; */
-  /* font-weight: bold; */
+  font-weight: bold;
   /* font-size: 1.25em; */
   /* letter-spacing: 0.05em; */
   /* font-weight: bold; */
@@ -78,6 +78,7 @@ body {
   color:white;
 }
 
+/*************************/
 
 .edit-input {
   width: 100px;

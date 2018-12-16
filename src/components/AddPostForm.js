@@ -71,8 +71,8 @@ class AddPostForm extends Component {
 
   render(){
     return(
-      <div className = 'container mt-3 text-white'>
-        <div className='card galaxy-purple'>
+      <div className = 'container mt-3'>
+        <div className='card bg-light'>
           <div className='card-body'>
             <div className='row my-1'>
               <h3 className='mx-auto'>New Review</h3>

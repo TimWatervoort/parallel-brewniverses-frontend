@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class AllChannelHead extends Component {
   render() {
     return(
-      <div className='container-fluid header-bg '>
+      <div className='container-fluid header-bg'>
         <div className='row pt-3'>
           <div className='col'>
             <h3 className='brew-header text-center header-text'>All <span className="fas fa-satellite text-white"></span> Brewniverses</h3>
