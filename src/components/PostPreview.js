@@ -87,7 +87,7 @@ class PostPreview extends Component {
           </div>
           <div className="card-footer pp-footer-tags bg-transparent border-white">
             {
-              post.tags ? post.tags.map((x, i) => <Link className='badge badge-dark galaxy-lavender text-white p-2 mr-2' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : null
+              post.tags ? post.tags.map((x, i) => <Link className='badge badge-dark galaxy-lavender text-white p-2 mr-2' to={`/brewniverse/${x.tag}`} key={i}>{x.tag}</Link>) : null
             }
           </div>
           <Link className='bg-light' to={`/post/${post.id}`}>
