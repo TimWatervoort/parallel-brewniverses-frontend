@@ -32,7 +32,7 @@ class SingleChannelHead extends Component {
         <div className='row mt-3'>
           <div className='col'>
             <h3 className='brew-header text-center header-text'>
-            {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`} <span onClick={this.sendSub} className='btn sub-button galaxy-indigo px-2 py-0'>{userChannels.includes(tag) ? '-' : '+'}</span></h3>
+              {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`} <span onClick={this.sendSub} className='btn sub-button galaxy-indigo'>{userChannels.includes(tag) ? <i class="fas fa-minus sub-button-icon"></i> : <i class="fas fa-plus sub-button-icon"></i>}</span></h3>
 
           </div>
         </div>
