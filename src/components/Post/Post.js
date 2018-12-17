@@ -69,12 +69,13 @@ class Post extends Component {
     const id = match.params.id
     const newTags = this.state.tags.split(',')
     const trimmedTags = newTags.map(x=>x.trim())
+    const objectTags = trimmedTags.map(x=> x={tag: x})
     const edits = {
       title: this.state.title,
       rating: this.state.rating,
       content: this.state.content,
       picture: this.state.picture,
-      tags: trimmedTags
+      tags: objectTags
     }
     editPost(id, edits)
     this.setState({
@@ -96,7 +97,7 @@ class Post extends Component {
 
     const titleEdit = <input name='title' type='text' className='form-control' value={this.state.title} onChange={this.handleChange}/>
 
-    const ratingEdit = <input name='rating' type='number' className='form-control' value={this.state.rating} onChange={this.handleChange}/>
+    const ratingEdit = <input min={0} max={5} name='rating' type='number' className='form-control' value={this.state.rating} onChange={this.handleChange}/>
 
     const contentEdit = <textarea name='content' className='form-control' value={this.state.content} onChange={this.handleChange}/>
 
