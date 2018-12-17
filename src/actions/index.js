@@ -11,9 +11,6 @@ export const getPosts = () => {
   return async dispatch => {
     const response = await fetch(`${apiUrl}/posts`)
     const json = await response.json()
-    json.forEach(x => {
-      x.tags = x.tags.map(y => y.tag)
-    })
     dispatch({
       type: GET_POSTS,
       payload: json
@@ -33,9 +30,6 @@ export const addPost = input => {
       body: JSON.stringify(input)
     })
     const json = await response.json()
-    if (json.tags) {
-      json.tags = json.tags.map(x => x.tag)
-    }
     dispatch({
       type: ADD_POST,
       payload: json
@@ -86,9 +80,6 @@ export const upvote = (id, score) => {
       })
     })
     const json = await response.json()
-    if (json.tags) {
-       json.tags = json.tags.map(x => x.tag)
-    }
     dispatch({
       type: PATCH_POST,
       payload: json
@@ -129,9 +120,6 @@ export const downvote = (id, score) => {
       })
     })
     const json = await response.json()
-    if (json.tags) {
-       json.tags = json.tags.map(x => x.tag)
-    }
     dispatch({
       type: PATCH_POST,
       payload: json
@@ -170,9 +158,6 @@ export const editPost = (id, input) => {
       body: JSON.stringify(input)
     })
     const json = await response.json()
-    if (json.tags) {
-       json.tags = json.tags.map(x => x.tag)
-    }
     dispatch({
       type: PATCH_POST,
       payload: json

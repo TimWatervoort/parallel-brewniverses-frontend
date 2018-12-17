@@ -154,7 +154,7 @@ class Post extends Component {
 
         <div className='row pb-2'>
           <div className='col pb-2'>
-              {post.tags ? post.tags.map((x,i) => <Link className='badge badge-dark galaxy-indigo text-white p-2 mx-1' to={`/brewniverse/${x}`} key={i}>{x}</Link>) : <div></div>}
+              {post.tags ? post.tags.map((x,i) => <Link className='badge badge-dark galaxy-indigo text-white p-2 mx-1' to={`/brewniverse/${x.tag}`} key={i}>{x.tag}</Link>) : <div></div>}
           </div>
         </div>
 

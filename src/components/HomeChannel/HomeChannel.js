@@ -14,7 +14,7 @@ class HomeChannel extends Component {
 
       for (let i = 0; i < posts.length; i++){
         for (let j = 0; j < posts[i].tags.length; j++){
-          if (userChannels.includes(posts[i].tags[j])) {
+          if (userChannels.includes(posts[i].tags[j].tag)) {
             toRender.push(posts[i])
             break
           }

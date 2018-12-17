@@ -7,7 +7,10 @@ class SingleChannel extends Component {
   render(){
     const { posts, match } = this.props
     const tag = match.params.channel
-    const toRender = posts.filter(x => x.tags.includes(tag));
+    const toRender = posts.filter(x => {
+      let xTags = x.tags.map(y => y.tag)
+      return xTags.includes(tag)
+    });
     return(
       <div>
       <SingleChannelHead tag={tag} length={toRender.length}/>
