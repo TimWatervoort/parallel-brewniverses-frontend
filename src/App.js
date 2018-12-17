@@ -9,6 +9,7 @@ import Login from './components/Auth/Login'
 import Signup from './components/Auth/Signup'
 import AwfulHome from './components/Awful/AwfulHome'
 import UserHome from './components/User/UserHome'
+import OtherUserHome from './components/User/OtherUser/OtherUserHome'
 import { Route, Redirect } from 'react-router-dom'
 
 
@@ -31,6 +32,7 @@ class App extends Component {
         <Route path = '/login' component={Login}/>
         <Route path = '/signup' component={Signup}/>
         <Route path = '/user' component={UserHome} />
+        <Route path = '/users/:id' component={OtherUserHome} />
         <Route path = '/awful' component={AwfulHome} />
       </div>
     );
