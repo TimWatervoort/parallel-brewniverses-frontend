@@ -92,7 +92,7 @@ class PostPreview extends Component {
           </div>
           <Link className='bg-light' to={`/post/${post.id}`}>
             <div className="card-footer pp-footer-view text-secondary bg-transparent">
-              <i className="ml-2 mt-1 fas fa-arrow-right float-right"></i><span className="float-right">View</span>
+              <i className="ml-2 mt-1 pb-2 fas fa-arrow-right float-right"></i><span className="float-right">View</span>
             </div>
           </Link>
         </div>
