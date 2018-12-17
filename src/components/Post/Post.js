@@ -141,7 +141,7 @@ class Post extends Component {
 
         <div className='row pb-2'>
           <div className='col-6'>
-            <h4>Posted By: {post.author}</h4>
+            <h5>Reviewed by <Link to={`/users/${post.authorId}`} className='text-black'>{post.author}</Link></h5>
           </div>
           <div className='col-6'>
             <h4>
