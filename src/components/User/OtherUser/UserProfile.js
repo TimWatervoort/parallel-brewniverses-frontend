@@ -25,7 +25,7 @@ class OtherUserProfile extends Component {
 
       <div className="row my-3">
 
-        <div className="col-md-8 mt-3 col-sm-12">
+        <div className="col mt-3">
           <div className='card h-100 bg-light'>
             <div className='card-body'>
               <div className="row">
@@ -40,17 +40,6 @@ class OtherUserProfile extends Component {
             </div>
           </div>
 
-        </div>
-
-        <div className="col-md-4 mt-3 col-sm-12">
-          <div className="card h-100 bg-light">
-            <div className='card-body'>
-              <h3 className="pt-2 px-3">Favorite Drinks</h3>
-              <ul className="list-group list-group-flush pt-2 pb-3 px-3">
-                 {favorites.map((x, i) => <StaticFavorite key={i} id={x} />)}
-              </ul>
-            </div>
-          </div>
         </div>
 
       </div>
