@@ -5,12 +5,10 @@ const user = (state={}, action) => {
     case GET_USER:
       return action.payload
     case ADD_USER:
-      console.log(action.payload);
       return state
     case LOGOUT:
       return {}
     case RECEIVE_JWT:
-      console.log(action.payload);
       return state
     default:
       return state
