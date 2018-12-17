@@ -117,6 +117,11 @@ body {
   color: #9959D9;
 }
 
+.sub-button-icon {
+  padding-left: .1em;
+  padding-top: .4em;
+}
+
 .sub-button:hover{
   background-color: #5246A6;
   color: black;

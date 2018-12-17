@@ -40,8 +40,8 @@ class PostPreview extends Component {
                   <hr></hr>
                 </div>
               </div>
-              <div cclassName="col-2 px-0">
-                <div>
+              <div className="col-2 px-0">
+                <div className="float-right mr-3">
                   <i onClick={this.sendUpvote} className={`${localStorage.getItem(`upvoted${post.id}`) ? 'upvoted' : 'uparrow'} mr-2 fas fa-arrow-up`}></i>
                   {post.score}
                   <i onClick={this.sendDownvote} className={`${localStorage.getItem(`downvoted${post.id}`) ? 'downvoted' : 'downarrow'} ml-2 fas fa-arrow-down`}></i>
