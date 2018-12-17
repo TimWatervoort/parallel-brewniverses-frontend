@@ -45,6 +45,8 @@ class Login extends Component {
 
   render(){
 
+    const { errors } = this.props
+
     return(
       <div className='container mt-3 bg-light rounded'>
 
@@ -53,6 +55,11 @@ class Login extends Component {
         <div className='row pt-4'>
           <div className='col'>
             <h3 className='text-center header-text' style={{ fontSize: "2em" }}>Login</h3>
+          </div>
+        </div>
+        <div className='row pt-4'>
+          <div className='col'>
+            {errors === 'login-error' ? <h5 className='text-center text-danger'>Invalid credentials!</h5> : null}
           </div>
         </div>
         <hr></hr>
@@ -89,7 +96,8 @@ class Login extends Component {
 const mapStateToProps = state => ({
   posts: state.posts,
   users: state.users,
-  user: state.user
+  user: state.user,
+  errors: state.errors
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
