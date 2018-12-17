@@ -22,38 +22,20 @@ class Signup extends Component {
     }
   }
 
-  setName = e => {
+  handleChange = e => {
+    const key = e.target.name
+    const value = e.target.value.replace(/\s/g, '')
     this.setState({
-      name: e.target.value
-    })
-  }
-
-  setPass = e => {
-    this.setState({
-      pass: e.target.value
-    })
-  }
-
-  setConfPass = e => {
-    this.setState({
-      confPass: e.target.value
-    })
-  }
-
-  setEmail = e => {
-    this.setState({
-      email: e.target.value
-    })
-  }
-
-  setImage = e => {
-    this.setState({
-      image: e.target.value
+      [key]: value
     })
   }
 
   checkFields = e => {
     e.preventDefault()
+
+    const { users } = this.props
+    const userEmails = users.map(x => x.email)
+    const userNames = users.map(x => x.username)
 
     if (this.state.pass !== this.state.confPass) {
       this.setState({
@@ -62,6 +44,20 @@ class Signup extends Component {
         nameTaken: false,
         pass: '',
         confPass: ''
+      })
+    } else if (userEmails.includes(this.state.email)){
+      this.setState({
+        passMatch: true,
+        emailTaken: true,
+        nameTaken: false,
+        email: ''
+      })
+    } else if (userNames.includes(this.state.name)){
+      this.setState({
+        passMatch: true,
+        emailTaken: false,
+        nameTaken: true,
+        name: ''
       })
     } else {
       this.sendSignup()
@@ -93,13 +89,15 @@ class Signup extends Component {
 
   render(){
 
+    const { errors } = this.props
+
     const passMatchError = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>Passwords do not match!</h4></div></div>
 
     const userNameTaken = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>Username already exists!</h4></div></div>
 
     const userEmailTaken = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>An account already exists with this email!</h4></div></div>
 
-    const success = <div className='row my-1'><div className='col'><h4 className='text-center text-white'>Welcome to Parallel Brewniverses! Please Log In to continue.</h4></div></div>
+    const success = <div className='row my-1'><div className='col'><h4 className='text-center text-success'>Welcome to Parallel Brewniverses! Please Log In to continue.</h4></div></div>
 
     return(
       <div className='container mt-3 bg-light rounded'>
@@ -109,12 +107,17 @@ class Signup extends Component {
             <h3 className='text-center'>Sign Up</h3>
           </div>
         </div>
+        <div className='row'>
+          <div className='col'>
+            {errors === 'signup-error' ? <h5 className='text-center text-danger'>Error creating account. Please try again.</h5> : null}
+          </div>
+        </div>
         <hr></hr>
 
         {this.state.passMatch ? <div></div> : passMatchError}
         {this.state.nameTaken ? userNameTaken : <div></div>}
         {this.state.emailTaken ? userEmailTaken : <div></div>}
-        {this.state.signedUp ? success : <div></div>}
+        {(this.state.signedUp && errors !== 'signup-error') ? success : <div></div>}
 
         <form onSubmit={this.checkFields} className='p-4'>
 
@@ -123,7 +126,7 @@ class Signup extends Component {
               <h4>Email: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setEmail} required value={this.state.email} className='form-control' type='email' placeholder='Email'/>
+              <input onChange={this.handleChange} autoComplete='off' name='email' required value={this.state.email} className='form-control' type='email' placeholder='Email'/>
             </div>
           </div>
 
@@ -132,7 +135,7 @@ class Signup extends Component {
               <h4>Username: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setName} required value={this.state.name} className='form-control' type='text' placeholder='Username'/>
+              <input onChange={this.handleChange} pattern="\S+" autoComplete='off' name='name' required value={this.state.name} className='form-control' type='text' placeholder='Username'/>
             </div>
           </div>
 
@@ -141,7 +144,7 @@ class Signup extends Component {
               <h4>Password: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setPass} required value={this.state.pass} className='form-control' type='password' placeholder='Password'/>
+              <input onChange={this.handleChange} autoComplete='off' name='pass' required value={this.state.pass} className='form-control' type='password' placeholder='Password'/>
             </div>
           </div>
 
@@ -150,7 +153,7 @@ class Signup extends Component {
               <h4>Confirm Password: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setConfPass} required value={this.state.confPass} className='form-control' type='password' placeholder='Password'/>
+              <input onChange={this.handleChange} autoComplete='off' name='confPass' required value={this.state.confPass} className='form-control' type='password' placeholder='Password'/>
             </div>
           </div>
 
@@ -159,7 +162,7 @@ class Signup extends Component {
               <h4>Profile Picture: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setImage} value={this.state.image} className='form-control' type='url' placeholder='Image URL'/>
+              <input onChange={this.handleChange} autoComplete='off' name='image' value={this.state.image} className='form-control' type='url' placeholder='Image URL'/>
             </div>
           </div>
 
@@ -175,7 +178,8 @@ class Signup extends Component {
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  users: state.users
+  users: state.users,
+  errors: state.errors
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

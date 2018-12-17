@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import StaticFavorite from './StaticFavorite'
 
 const imgSrc = 'http://placekitten.com/300/300'
 
 class OtherUserProfile extends Component {
 
   render() {
-
-    const favorites = [1,2,3]
 
     const { id, users } = this.props
     const select = users.filter(x => parseInt(x.id) === parseInt(id))

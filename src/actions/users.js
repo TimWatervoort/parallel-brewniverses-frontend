@@ -7,6 +7,8 @@ export const ADD_USER = 'ADD_USER'
 export const SET_USER_COOKIE = 'SET_USER_COOKIE'
 export const LOGOUT = 'LOGOUT'
 export const RECEIVE_JWT = 'RECEIVE_JWT'
+export const SEND_ERROR = 'SEND_ERROR'
+export const CLEAR_ERROR = 'CLEAR_ERROR'
 
 const apiUrl = 'http://test-brew.herokuapp.com'
 
@@ -49,11 +51,21 @@ export const addUser = input => {
       },
       body: JSON.stringify(input)
     })
-    const json = await response.json()
-    dispatch({
-      type: ADD_USER,
-      payload: json
-    })
+    if (response.status !== 200 && response.status !== 201) {
+      dispatch({
+        type: SEND_ERROR,
+        payload: 'signup-error'
+      })
+    } else {
+      const json = await response.json()
+      dispatch({
+        type: ADD_USER,
+        payload: json
+      })
+      dispatch({
+        type: CLEAR_ERROR
+      })
+    }
   }
 }
 
@@ -122,23 +134,32 @@ export const userLogin = input => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(input)
     })
-    const json = await response.json()
-    Cookies.set('access_token', json.access) //set access token in cookies
-    const uid = jwt.decode(json.access) //get user id from jwt
-    Cookies.set('user_id', uid.user_id) //set user id in cookies
-    dispatch({ //send dispatch to reducer
-      type: RECEIVE_JWT,
-      payload: json
-    })
+    if (response.status !== 200) {
+      dispatch({
+        type: SEND_ERROR,
+        payload: 'login-error'
+      })
+    } else {
+        const json = await response.json()
+        Cookies.set('access_token', json.access) //set access token in cookies
+        const uid = jwt.decode(json.access) //get user id from jwt
+        Cookies.set('user_id', uid.user_id) //set user id in cookies
+        dispatch({ //send dispatch to reducer
+          type: RECEIVE_JWT,
+          payload: json
+        })
 
-    const response2 = await fetch(`${apiUrl}/users/${uid.user_id}`) //get user
-    const json2 = await response2.json()
-    dispatch({ //send user to reducer
-      type: GET_USER,
-      payload: json2
-    })
-
-  }
+        const response2 = await fetch(`${apiUrl}/users/${uid.user_id}`) //get user
+        const json2 = await response2.json()
+        dispatch({ //send user to reducer
+          type: GET_USER,
+          payload: json2
+        })
+        dispatch({
+          type: CLEAR_ERROR
+        })
+      }
+    }
 }
 
 export const editUser = (id, input) => {
