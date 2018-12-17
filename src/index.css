@@ -46,11 +46,11 @@ body {
 }
 
 .pp-image {
-  /* height: auto; */
-  /* max-width: 100%; */
+  object-fit: cover;
+  height: 100%;
+  max-height: 5em;
+  width: 100%;
   border-radius: .15em;
-  /* border: 1px solid grey; */
-  /* max-height: 6em; */
 }
 
 .pp-card {
