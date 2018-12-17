@@ -46,7 +46,7 @@ class Login extends Component {
   render(){
 
     return(
-      <div className='container mt-3 text-white galaxy-purple'>
+      <div className='container mt-3 bg-light rounded'>
 
         {Cookies.get('user_id') ? <Redirect to='/' /> : <div></div>}
 

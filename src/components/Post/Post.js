@@ -34,7 +34,7 @@ class Post extends Component {
     const post = posts.filter(x => parseInt(x.id) === parseInt(id))[0]
 
     return(
-      <div className='galaxy-purple container text-white mb-2 mt-3 rounded'>
+      <div className='container mb-2 mt-3 rounded bg-light'>
         <div className='row pt-3'>
 
           <div className='col-6'>

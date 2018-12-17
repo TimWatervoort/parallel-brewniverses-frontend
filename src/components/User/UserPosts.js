@@ -20,9 +20,9 @@ class UserPosts extends Component {
     return (
       <div className="row my-3">
         <div className="col-12">
-          <div className="galaxy-purple rounded">
-            <h3 className="py-3 px-3 galaxy-purple text-white">Posts</h3>
-            <ul className="list-group galaxy-purple pb-3 px-3">
+          <div className="card bg-light">
+            <h3 className="py-3 px-3 bg-light">Posts</h3>
+            <ul className="list-group bg-light pb-3 px-3">
               {userPostList.length > 0 ? userPostList : <div></div>}
             </ul>
           </div>

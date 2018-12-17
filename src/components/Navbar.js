@@ -4,30 +4,18 @@ import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 class Navbar extends Component {
-  render(){
 
-    return(
-      <div>
-        <nav className='navbar galaxy-lavender mb-0 pb-0'>
-          <Link className='mx-auto text-gpink nav-title' to='/all'>Parallel Brewniverses</Link>
-        </nav>
-        <div className='container-fluid galaxy-lavender mt-0 text-center'>
-          <Link className="fab fa-react nav-symbol mt-2" to='/all'></Link>
-        </div>
-        <div className='container-fluid galaxy-lavender mt-0 text-center'>
-          <div className='row'>
-            <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('user_id') ? '/home' : '/all'}>{Cookies.get('user_id') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
-            </div>
-            <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('user_id') ? '/addpost' : '/signup'}>{Cookies.get('user_id') ? 'New Review' : 'Sign Up'}</Link>
-            </div>
-            <div className='col'>
-              <Link className="btn galaxy-lavender text-gpink mb-1" to={Cookies.get('user_id') ? '/user' : '/login'}>{Cookies.get('user_id') ? 'My Profile' : 'Log In'}</Link>
-            </div>
-          </div>
-        </div>
-      </div>
+  render() {
+    return (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand" to="/all">
+          <img src={require('./Icon/pb_logo_alt.svg')} height="40" className="d-inline-block align-top ml-1" alt="" />
+          {/* <img src={require('./Icon/pb_type.svg')} height="40" className="d-inline-block align-top mx-3" alt="" /> */}
+        </Link>
+        <Link className="btn mb-1 nav-link" to={Cookies.get('user_id') ? '/home' : '/all'}>{Cookies.get('user_id') ? 'My Brewniverses' : 'All Brewniverses'}</Link>
+        <Link className="btn mb-1 nav-link" to={Cookies.get('user_id') ? '/addpost' : '/signup'}>{Cookies.get('user_id') ? 'New Review' : 'Sign Up'}</Link>
+        <Link className="btn mb-1 nav-link" to={Cookies.get('user_id') ? '/user' : '/login'}>{Cookies.get('user_id') ? 'My Profile' : 'Log In'}</Link>
+      </nav>
     )
   }
 }

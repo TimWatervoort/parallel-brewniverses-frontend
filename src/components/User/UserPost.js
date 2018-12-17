@@ -16,7 +16,7 @@ class UserPost extends Component {
     const { post } = this.props
 
     return(
-      <li className="list-group-item galaxy-purple text-white">
+      <li className="list-group-item bg-light">
         <div className='row'>
           <div className='col-6'>
             <h5>{post.title}</h5>

@@ -28,16 +28,16 @@ class SingleChannelHead extends Component {
     }
 
     return(
-      <div className='container galaxy-purple my-3 py-3 rounded'>
-        <div className='row'>
+      <div className='container'>
+        <div className='row mt-3'>
           <div className='col'>
-            <h3 className='brew-header text-center'>
+            <h3 className='brew-header text-center header-text'>
             {length === 0 ? 'This brewniverse doesn\'t exist yet!' : `${capitalized} Brewniverse`} <span onClick={this.sendSub} className='btn sub-button galaxy-indigo px-2 py-0'>{userChannels.includes(tag) ? '-' : '+'}</span></h3>
 
           </div>
         </div>
 
-        <div className='row pt-1'>
+        <div className='row mb-3'>
           <div className='col text-center'>
             <Link className='btn galaxy-indigo sub-button text-white' to='/all'>All Brewniverses</Link>
           </div>
