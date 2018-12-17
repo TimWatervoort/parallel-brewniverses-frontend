@@ -62,11 +62,9 @@ export const addSubscription = (input, existing) => {
     tag: input
   }
   const updatedTags = [...existing, newTag] //spread old tags and add new one to array
-  console.log(updatedTags);
   return async dispatch => {
     const uid = Cookies.get('user_id') //get necessary info
     const token = Cookies.get('access_token')
-    console.log(token);
     const response = await fetch (`${apiUrl}/users/${uid}`, { //send api call
       method: 'PATCH',
       headers: {
@@ -140,5 +138,22 @@ export const userLogin = input => {
       payload: json2
     })
 
+  }
+}
+
+export const editUser = (id, input) => {
+  return async dispatch => {
+    const token = Cookies.get('access_token')
+    const response = await fetch(`${apiUrl}/users/${id}`, {
+      method: 'PATCH',
+      headers: {"Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`},
+      body: JSON.stringify(input)
+    })
+    const json = await response.json()
+    dispatch({
+      type: GET_USER,
+      payload: json
+    })
   }
 }
