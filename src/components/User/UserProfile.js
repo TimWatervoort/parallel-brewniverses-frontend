@@ -33,7 +33,7 @@ class UserProfile extends Component {
             <div className='card-body'>
               <div className="row">
                 <div className="col-5">
-                  <img src={imgSrc} alt="user profile" className="user-img img-fluid my-3" />
+                  <img src={user.picture ? user.picture : imgSrc} alt="user profile" className="user-img img-fluid my-3" />
                 </div>
                 <div className="col-7">
                   <h3 className="py-1"><strong>User: </strong>{user.username}</h3>
