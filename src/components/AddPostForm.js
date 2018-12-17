@@ -28,14 +28,15 @@ class AddPostForm extends Component {
     e.preventDefault()
     const { addPost } = this.props
     const channelArray = this.state.channels.split(',')
-    const trimmedArray = channelArray.map(x => ({ tag: x.trim() }))
+    const trimmedArray = channelArray.map(x => x.trim())
+    const objectTags = trimmedArray.map(x => x = {tag: x})
     const newPost = {
       title: this.state.title,
       content: this.state.content,
       rating: this.state.rating,
       score: 0,
       picture: this.state.picture,
-      tags: trimmedArray
+      tags: objectTags
     }
     addPost(newPost)
     this.setState({
