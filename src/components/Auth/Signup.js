@@ -159,7 +159,7 @@ class Signup extends Component {
               <h4>Profile Picture: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setImage} value={this.state.image} className='form-control' type='url' placeholder='Image URL'/>
+              <input onChange={this.setImage} required value={this.state.image} className='form-control' type='url' placeholder='Image URL'/>
             </div>
           </div>
 
