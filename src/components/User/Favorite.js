@@ -12,7 +12,6 @@ class Favorite extends Component {
   }
 
   setItem = e => {
-    const { id } = this.props
     this.setState({
       item: e.target.value
     })

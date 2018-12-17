@@ -86,7 +86,6 @@ export const upvote = (id, score) => {
       })
     })
     const json = await response.json()
-    console.log(json);
     if (json.tags) {
        json.tags = json.tags.map(x => x.tag)
     }

@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { upvote, downvote, deletePost, editPost } from '../../actions/index'
 import { bindActionCreators } from 'redux'
+import Cookies from 'js-cookie'
 
 class Post extends Component {
 
   constructor(props) {
     super(props)
-    const {  } = this.props
     this.sendUpvote = this.sendUpvote.bind(this)
     this.sendDownvote = this.sendDownvote.bind(this)
     this.startEdit = this.startEdit.bind(this)
@@ -107,6 +107,8 @@ class Post extends Component {
 
     const editButton = <button onClick={this.startEdit} className='btn galaxy-indigo sub-button text-white'>Edit</button>
 
+    let authorized = parseInt(Cookies.get('user_id')) === parseInt(post.authorId)
+
     return(
       <div className='container mb-2 mt-3 rounded bg-light'>
         <div className='row pt-3'>
@@ -119,9 +121,7 @@ class Post extends Component {
             {this.state.editOn ? ratingEdit : <h3>Rating: {post.rating}/5</h3>}
           </div>
 
-          <div className='col-2'>
-            {this.state.editOn ? submitButton : editButton}
-          </div>
+          {authorized ? <div className='col-2'>{this.state.editOn ? submitButton : editButton}</div> : <div></div>}
 
         </div>
 
