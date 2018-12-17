@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userLogout } from '../../actions/users'
+import { userLogout, editUser } from '../../actions/users'
 import Cookies from 'js-cookie'
 import { Redirect } from 'react-router-dom'
 import Favorite from './Favorite'
@@ -10,6 +10,41 @@ import StaticFavorite from './StaticFavorite'
 const imgSrc = 'http://placekitten.com/300/300'
 
 class UserProfile extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state= {
+      picture: '',
+      editOn: false
+    }
+  }
+
+  startEdit = e => {
+    const { user } = this.props
+    this.setState({
+      editOn: true,
+      picture: user.picture
+    })
+  }
+
+  submitEdit = e => {
+    const { user, editUser } = this.props
+    this.setState({
+      editOn: false
+    })
+    const edits = {
+      picture: this.state.picture,
+      channels: user.channels
+    }
+    editUser(user.id, edits)
+  }
+
+  handleChange = e => {
+    const key = e.target.name
+    this.setState({
+      [key]: e.target.value
+    })
+  }
 
   logout = e => {
     const { userLogout } = this.props
@@ -34,6 +69,13 @@ class UserProfile extends Component {
               <div className="row">
                 <div className="col-5">
                   <img src={user.picture ? user.picture : imgSrc} alt="user profile" className="user-img img-fluid my-3" />
+
+                  <button
+                    onClick={this.state.editOn ? this.submitEdit : this.startEdit }
+                    className='btn galaxy-indigo text-white sub-button ml-1'>
+                      <i className="fas fa-edit"></i> {this.state.editOn ? 'Submit' : 'Edit Picture'}
+                  </button>
+
                 </div>
                 <div className="col-7">
                   <h3 className="py-1"><strong>User: </strong>{user.username}</h3>
@@ -41,6 +83,11 @@ class UserProfile extends Component {
                   {Cookies.get('user_id') ? <button onClick={this.logout} className='btn galaxy-indigo text-white sub-button'>Log Out</button> : <div></div>}
                 </div>
               </div>
+
+              <div className='row'>
+                {this.state.editOn ? <input name='picture' className='mt-3 form-control' type='url' value={this.state.picture} onChange={this.handleChange}/> : <div></div>}
+              </div>
+
             </div>
           </div>
 
@@ -68,7 +115,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  userLogout
+  userLogout,
+  editUser
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
