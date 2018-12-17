@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 import OtherUserProfile from './UserProfile'
 import OtherUserSubscriptions from './UserSubscriptions'
@@ -19,6 +20,7 @@ class OtherUserHome extends Component {
 
       <div className="container">
         {user.length === 0 ? <Redirect to='/' /> : <div></div>}
+        {parseInt(Cookies.get('user_id')) === parseInt(id) ? <Redirect to='/user' /> : <div></div>}
         <OtherUserProfile id={id}/>
         <OtherUserSubscriptions id={id}/>
         <OtherUserPosts id={id}/>
