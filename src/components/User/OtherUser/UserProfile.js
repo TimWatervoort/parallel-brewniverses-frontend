@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import StaticFavorite from './StaticFavorite'
 
 const imgSrc = 'http://placekitten.com/300/300'
