@@ -28,7 +28,7 @@ class AddPostForm extends Component {
     e.preventDefault()
     const { addPost } = this.props
     const channelArray = this.state.channels.split(',')
-    const trimmedArray = channelArray.map(x => x.trim())
+    const trimmedArray = channelArray.map(x => ({ tag: x.trim() }) )
     const newPost = {
       title: this.state.title,
       content: this.state.content,

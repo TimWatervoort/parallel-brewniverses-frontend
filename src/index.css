@@ -33,6 +33,10 @@ body {
   text-transform: uppercase;
 }
 
+.form-title {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 /* POST PREVIEW CARDS */
 
 .pp-title {

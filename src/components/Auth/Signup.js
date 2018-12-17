@@ -106,7 +106,7 @@ class Signup extends Component {
         {Cookies.get('user_id') ? <Redirect to='/' /> : <div></div>}
         <div className='row pt-4'>
           <div className='col'>
-            <h3 className='text-center'>Sign Up</h3>
+            <h3 className='text-center header-text' style={{ fontSize: "2em" }}>Sign Up</h3>
           </div>
         </div>
         <hr></hr>
@@ -120,7 +120,7 @@ class Signup extends Component {
 
           <div className='row'>
             <div className='col-4'>
-              <h4>Email: </h4>
+              <h4 className="form-title">Email: </h4>
             </div>
             <div className='col-8'>
               <input onChange={this.setEmail} required value={this.state.email} className='form-control' type='email' placeholder='Email'/>
@@ -129,7 +129,7 @@ class Signup extends Component {
 
           <div className='row mt-3'>
             <div className='col-4'>
-              <h4>Username: </h4>
+              <h4 className="form-title">Username: </h4>
             </div>
             <div className='col-8'>
               <input onChange={this.setName} required value={this.state.name} className='form-control' type='text' placeholder='Username'/>
@@ -138,7 +138,7 @@ class Signup extends Component {
 
           <div className='row mt-3'>
             <div className='col-4'>
-              <h4>Password: </h4>
+              <h4 className="form-title">Password: </h4>
             </div>
             <div className='col-8'>
               <input onChange={this.setPass} required value={this.state.pass} className='form-control' type='password' placeholder='Password'/>
@@ -147,16 +147,16 @@ class Signup extends Component {
 
           <div className='row mt-3'>
             <div className='col-4'>
-              <h4>Confirm Password: </h4>
+              <h4 className="form-title">Confirm Password: </h4>
             </div>
             <div className='col-8'>
-              <input onChange={this.setConfPass} required value={this.state.confPass} className='form-control' type='password' placeholder='Password'/>
+              <input onChange={this.setConfPass} required value={this.state.confPass} className='form-control' type='password' placeholder='Confirm Password'/>
             </div>
           </div>
 
           <div className='row mt-3'>
             <div className='col-4'>
-              <h4>Profile Picture: </h4>
+              <h4 className="form-title">Profile Picture: </h4>
             </div>
             <div className='col-8'>
               <input onChange={this.setImage} required value={this.state.image} className='form-control' type='url' placeholder='Image URL'/>
