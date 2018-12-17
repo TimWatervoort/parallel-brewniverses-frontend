@@ -70,11 +70,15 @@ class UserProfile extends Component {
                 <div className="col-5">
                   <img src={user.picture ? user.picture : imgSrc} alt="user profile" className="user-img img-fluid my-3" />
 
-                  <button
-                    onClick={this.state.editOn ? this.submitEdit : this.startEdit }
-                    className='btn galaxy-indigo text-white sub-button ml-1'>
-                      <i className="fas fa-edit"></i> {this.state.editOn ? 'Submit' : 'Edit Picture'}
-                  </button>
+                  <div className='row'>
+                    <div className='col'>
+                      <button
+                      onClick={this.state.editOn ? this.submitEdit : this.startEdit }
+                      className='btn galaxy-indigo text-white sub-button'>
+                        <i className="fas fa-edit"></i> {this.state.editOn ? 'Submit' : 'Edit Picture'}
+                      </button>
+                    </div>
+                  </div>
 
                 </div>
                 <div className="col-7">
