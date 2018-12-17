@@ -42,7 +42,8 @@ class Post extends Component {
     const { posts, match } = this.props
     const id = match.params.id
     const post = posts.filter(x => parseInt(x.id) === parseInt(id))[0]
-    const tagStr = post.tags.join(', ')
+    const tagArr = post.tags.map(x => x.tag)
+    const tagStr = tagArr.join(', ')
 
     this.setState({
       editOn: true,
