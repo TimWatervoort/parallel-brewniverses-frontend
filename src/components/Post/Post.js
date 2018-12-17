@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { upvote, downvote, deletePost } from '../../actions/index'
+import { upvote, downvote, deletePost, editPost } from '../../actions/index'
 import { bindActionCreators } from 'redux'
 
 class Post extends Component {
@@ -64,6 +64,8 @@ class Post extends Component {
 
   submitEdits = e => {
     e.preventDefault()
+    const { editPost, match } = this.props
+    const id = match.params.id
     const newTags = this.state.tags.split(',')
     const trimmedTags = newTags.map(x=>x.trim())
     const edits = {
@@ -71,12 +73,12 @@ class Post extends Component {
       rating: this.state.rating,
       content: this.state.content,
       picture: this.state.picture,
-      tags: trimmedTags,
+      tags: trimmedTags
     }
+    editPost(id, edits)
     this.setState({
       editOn: false
     })
-
   }
 
   render(){
@@ -174,7 +176,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   upvote,
   downvote,
-  deletePost
+  deletePost,
+  editPost
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

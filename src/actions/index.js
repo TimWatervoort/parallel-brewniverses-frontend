@@ -158,3 +158,25 @@ export const deletePost = id => {
     })
   }
 }
+
+export const editPost = (id, input) => {
+  const token = Cookies.get('access_token')
+  return async dispatch => {
+    const response = await fetch(`${apiUrl}/posts/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(input)
+    })
+    const json = await response.json()
+    if (json.tags) {
+       json.tags = json.tags.map(x => x.tag)
+    }
+    dispatch({
+      type: PATCH_POST,
+      payload: json
+    })
+  }
+}
