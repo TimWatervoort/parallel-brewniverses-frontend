@@ -8,7 +8,7 @@ class OtherUserPosts extends Component {
 
     const { id, posts } = this.props
 
-    const postsToUse = posts.filter(x => x.authorId === id)
+    const postsToUse = posts.filter(x => parseInt(x.authorId) === parseInt(id))
     const userPostList = postsToUse.map((post, i) => <OtherUserPost key={i} post={post}/>)
 
     return (
