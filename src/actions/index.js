@@ -4,6 +4,9 @@ export const GET_POSTS = 'GET_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const PATCH_POST = 'PATCH_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const ADD_POST_ERROR = 'ADD_POST_ERROR'
+export const CLEAR_SUCCESS = 'CLEAR_SUCCESS'
+const CLEAR_ERROR = 'CLEAR_ERROR'
 
 const apiUrl = 'http://test-brew.herokuapp.com'
 
@@ -29,11 +32,30 @@ export const addPost = input => {
       },
       body: JSON.stringify(input)
     })
-    const json = await response.json()
-    dispatch({
-      type: ADD_POST,
-      payload: json
-    })
+    if (response.status !== 200 && response.status !== 201) {
+      dispatch({
+        type: ADD_POST_ERROR
+      })
+    } else {
+      const json = await response.json()
+
+      dispatch({
+        type: ADD_POST,
+        payload: json
+      })
+
+      dispatch({
+        type: CLEAR_ERROR,
+        payload: json
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: CLEAR_SUCCESS
+        }, 1000)
+
+      })
+    }
   }
 }
 

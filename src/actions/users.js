@@ -9,6 +9,7 @@ export const LOGOUT = 'LOGOUT'
 export const RECEIVE_JWT = 'RECEIVE_JWT'
 export const SEND_ERROR = 'SEND_ERROR'
 export const CLEAR_ERROR = 'CLEAR_ERROR'
+const CLEAR_SUCCESS = 'CLEAR_SUCCESS'
 
 const apiUrl = 'http://test-brew.herokuapp.com'
 
@@ -58,13 +59,22 @@ export const addUser = input => {
       })
     } else {
       const json = await response.json()
+
       dispatch({
         type: ADD_USER,
         payload: json
       })
+      
       dispatch({
         type: CLEAR_ERROR
       })
+
+      setTimeout(() => {
+        dispatch({
+          type: CLEAR_SUCCESS
+        })
+      }, 1000)
+
     }
   }
 }

@@ -17,7 +17,6 @@ class Signup extends Component {
       image: '',
       passMatch: true,
       nameTaken: false,
-      emailTaken: false,
       signedUp: false
     }
   }
@@ -34,28 +33,18 @@ class Signup extends Component {
     e.preventDefault()
 
     const { users } = this.props
-    const userEmails = users.map(x => x.email)
     const userNames = users.map(x => x.username)
 
     if (this.state.pass !== this.state.confPass) {
       this.setState({
         passMatch: false,
-        emailTaken: false,
         nameTaken: false,
         pass: '',
         confPass: ''
       })
-    } else if (userEmails.includes(this.state.email)){
-      this.setState({
-        passMatch: true,
-        emailTaken: true,
-        nameTaken: false,
-        email: ''
-      })
     } else if (userNames.includes(this.state.name)){
       this.setState({
         passMatch: true,
-        emailTaken: false,
         nameTaken: true,
         name: ''
       })
@@ -81,7 +70,6 @@ class Signup extends Component {
         email: '',
         image: '',
         passMatch: true,
-        emailTaken: false,
         nameTaken: false,
         signedUp: true
       })
@@ -89,15 +77,11 @@ class Signup extends Component {
 
   render(){
 
-    const { errors } = this.props
+    const { errors, success } = this.props
 
     const passMatchError = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>Passwords do not match!</h4></div></div>
 
     const userNameTaken = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>Username already exists!</h4></div></div>
-
-    const userEmailTaken = <div className='row my-1'><div className='col'><h4 className='text-center text-warning'>An account already exists with this email!</h4></div></div>
-
-    const success = <div className='row my-1'><div className='col'><h4 className='text-center text-success'>Welcome to Parallel Brewniverses! Please Log In to continue.</h4></div></div>
 
     return(
       <div className='container mt-3 bg-light rounded'>
@@ -116,8 +100,7 @@ class Signup extends Component {
 
         {this.state.passMatch ? <div></div> : passMatchError}
         {this.state.nameTaken ? userNameTaken : <div></div>}
-        {this.state.emailTaken ? userEmailTaken : <div></div>}
-        {(this.state.signedUp && errors !== 'signup-error') ? success : <div></div>}
+        {success === 'add_user_success' ? <Redirect to='/login' /> : <div></div>}
 
         <form onSubmit={this.checkFields} className='p-4'>
 
@@ -179,7 +162,8 @@ class Signup extends Component {
 const mapStateToProps = state => ({
   posts: state.posts,
   users: state.users,
-  errors: state.errors
+  errors: state.errors,
+  success: state.success
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

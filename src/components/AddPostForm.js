@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addPost } from '../actions/index'
 import { bindActionCreators } from 'redux'
+import { Redirect } from 'react-router-dom'
 
 class AddPostForm extends Component {
 
@@ -12,8 +13,7 @@ class AddPostForm extends Component {
       content: '',
       rating: 0,
       picture: '',
-      channels: '',
-      submitted: false
+      channels: ''
     }
   }
 
@@ -44,12 +44,14 @@ class AddPostForm extends Component {
       content: '',
       picture: '',
       rating: 0,
-      channels: '',
-      submitted: true
+      channels: ''
     })
   }
 
   render(){
+
+    const { success, errors } = this.props
+
     return(
       <div className = 'container mt-3'>
         <div className='card bg-light'>
@@ -58,7 +60,8 @@ class AddPostForm extends Component {
               <h3 className='mx-auto'>New Review</h3>
             </div>
             <div className='row my-1'>
-              {this.state.submitted ? <h5 className='mx-auto text-success'>Review posted!</h5> : <div></div>}
+              {errors === 'add_post_error' ? <h5 className='mx-auto text-danger'>Error creating post.</h5> : <div></div>}
+              {/\d+/.test(success) ? <Redirect to={`/post/${success}`} /> : <div></div>}
             </div>
             <hr></hr>
           <form onSubmit={this.send}>
@@ -111,7 +114,9 @@ class AddPostForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  errors: state.errors,
+  success: state.success
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

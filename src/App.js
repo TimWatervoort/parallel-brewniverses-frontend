@@ -10,6 +10,7 @@ import Signup from './components/Auth/Signup'
 import AwfulHome from './components/Awful/AwfulHome'
 import UserHome from './components/User/UserHome'
 import OtherUserHome from './components/User/OtherUser/OtherUserHome'
+import AwfulPostView from './components/Awful/AwfulPostView'
 import { Route, Redirect } from 'react-router-dom'
 
 
@@ -34,6 +35,7 @@ class App extends Component {
         <Route path = '/user' component={UserHome} />
         <Route path = '/users/:id' component={OtherUserHome} />
         <Route path = '/awful' component={AwfulHome} />
+        <Route path = '/awfulpost' component={AwfulPostView} />
       </div>
     );
   }
