@@ -25,7 +25,7 @@ class Navbar extends Component {
         <Link className="navbar-brand" to="/all">
           <img src={require('./Icon/pb_logo_alt.svg')} height="40" className="d-inline-block align-top ml-1" alt="" />
         </Link>
-        <button onClick={this.toggleNavbar} className={`${classTwo}`} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-collapse">
+        <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse" data-target="#nav-collapse">
           <span className="navbar-toggler-icon"></span>
         </button>
 
