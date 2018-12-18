@@ -7,6 +7,7 @@ export const DELETE_POST = 'DELETE_POST'
 export const ADD_POST_ERROR = 'ADD_POST_ERROR'
 export const CLEAR_SUCCESS = 'CLEAR_SUCCESS'
 export const SORT_BY_POPULAR = 'SORT_BY_POPULAR'
+export const SORT_BY_OLDEST = 'SORT_BY_OLDEST'
 const CLEAR_ERROR = 'CLEAR_ERROR'
 
 const apiUrl = 'http://test-brew.herokuapp.com'
@@ -191,12 +192,17 @@ export const editPost = (id, input) => {
 }
 
 export const sortByPopular = () => {
-  return async dispatch => {
-      const response = await fetch(`${apiUrl}/posts`)
-      const json = await response.json()
-      dispatch({
-        type: SORT_BY_POPULAR,
-        payload: json
-      })
+  return dispatch => {
+    dispatch({
+      type: SORT_BY_POPULAR
+    })
+  }
+}
+
+export const sortByOldest = () => {
+  return dispatch => {
+    dispatch({
+      type: SORT_BY_OLDEST
+    })
   }
 }

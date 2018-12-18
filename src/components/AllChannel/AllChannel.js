@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sortByPopular, getPosts } from '../../actions/index'
+import { sortByPopular, getPosts, sortByOldest } from '../../actions/index'
 import { bindActionCreators } from 'redux'
 import PostPreview from '../PostPreview'
 import AllChannelHead from './AllChannelHead'
@@ -8,13 +8,16 @@ import AllChannelHead from './AllChannelHead'
 class AllChannel extends Component {
 
   sortByName = e => {
-    const { sortByPopular, getPosts } = this.props
+    const { sortByPopular, getPosts, sortByOldest } = this.props
     switch(e.target.name) {
       case 'popular':
         sortByPopular()
         break
       case 'id':
         getPosts()
+        break
+      case 'old':
+        sortByOldest()
         break
       default:
         console.log(e.target.name)
@@ -37,7 +40,8 @@ class AllChannel extends Component {
           <div className='row'>
             <div className='col text-center'>
               <button name='popular' onClick={this.sortByName} className='btn mr-2 mb-2 galaxy-indigo sub-button text-white'>Popular</button>
-              <button name='id' onClick={this.sortByName} className='btn ml-2 mb-2 galaxy-indigo sub-button text-white'>Recent</button>
+              <button name='id' onClick={this.sortByName} className='btn mx-2 mb-2 galaxy-indigo sub-button text-white'>Newest</button>
+              <button name='old' onClick={this.sortByName} className='btn ml-2 mb-2 galaxy-indigo sub-button text-white'>Oldest</button>
             </div>
           </div>
 
@@ -56,7 +60,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   sortByPopular,
-  getPosts
+  getPosts,
+  sortByOldest
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllChannel)
