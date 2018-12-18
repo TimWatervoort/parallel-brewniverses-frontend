@@ -57,7 +57,7 @@ class Login extends Component {
             <h3 className='text-center header-text' style={{ fontSize: "2em" }}>Login</h3>
           </div>
         </div>
-        <div className='row pt-4'>
+        <div className='row'>
           <div className='col'>
             {errors === 'login-error' ? <h5 className='text-center text-danger'>Invalid credentials!</h5> : null}
           </div>
