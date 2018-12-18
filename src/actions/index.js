@@ -8,6 +8,7 @@ export const ADD_POST_ERROR = 'ADD_POST_ERROR'
 export const CLEAR_SUCCESS = 'CLEAR_SUCCESS'
 export const SORT_BY_POPULAR = 'SORT_BY_POPULAR'
 export const SORT_BY_OLDEST = 'SORT_BY_OLDEST'
+export const SORT_BY_RATING = 'SORT_BY_RATING'
 const CLEAR_ERROR = 'CLEAR_ERROR'
 
 const apiUrl = 'http://test-brew.herokuapp.com'
@@ -203,6 +204,14 @@ export const sortByOldest = () => {
   return dispatch => {
     dispatch({
       type: SORT_BY_OLDEST
+    })
+  }
+}
+
+export const sortByRating = () => {
+  return dispatch => {
+    dispatch({
+      type: SORT_BY_RATING
     })
   }
 }

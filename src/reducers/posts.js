@@ -1,4 +1,4 @@
-import { GET_POSTS, ADD_POST, PATCH_POST, DELETE_POST, SORT_BY_POPULAR, SORT_BY_OLDEST } from '../actions/index';
+import { GET_POSTS, ADD_POST, PATCH_POST, DELETE_POST, SORT_BY_POPULAR, SORT_BY_OLDEST, SORT_BY_RATING } from '../actions/index';
 
 const posts = (state=[], action) => {
   switch(action.type){
@@ -19,6 +19,9 @@ const posts = (state=[], action) => {
       return [...state]
     case SORT_BY_OLDEST:
       state.sort((x,y) => x.id - y.id)
+      return [...state]
+    case SORT_BY_RATING:
+      state.sort((x,y) => y.rating - x.rating)
       return [...state]
     default:
       return state;
