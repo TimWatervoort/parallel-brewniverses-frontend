@@ -46,7 +46,7 @@ class AwfulPostView extends Component {
 
       <div className='row pb-2'>
         <div className='col-6'>
-          <h5>Reviewed by <Link to={`/users/${awfulObj.authorId}`} className='text-black'>{awfulObj.author}</Link></h5>
+          <h5>Reviewed by {awfulObj.author}</h5>
         </div>
         <div className='col-6'>
           <h4>
