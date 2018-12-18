@@ -6,6 +6,7 @@ export const PATCH_POST = 'PATCH_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const ADD_POST_ERROR = 'ADD_POST_ERROR'
 export const CLEAR_SUCCESS = 'CLEAR_SUCCESS'
+export const SORT_BY_POPULAR = 'SORT_BY_POPULAR'
 const CLEAR_ERROR = 'CLEAR_ERROR'
 
 const apiUrl = 'http://test-brew.herokuapp.com'
@@ -59,7 +60,6 @@ export const addPost = input => {
   }
 }
 
-
 const checkVote = id => {
   if (localStorage.getItem(`upvoted${id}`)) {
     return 'downvote_required'
@@ -110,7 +110,6 @@ export const upvote = (id, score) => {
     }
   }
 }
-
 
 export const downvote = (id, score) => {
   const token = Cookies.get('access_token')
@@ -188,5 +187,16 @@ export const editPost = (id, input) => {
       type: PATCH_POST,
       payload: json
     })
+  }
+}
+
+export const sortByPopular = () => {
+  return async dispatch => {
+      const response = await fetch(`${apiUrl}/posts`)
+      const json = await response.json()
+      dispatch({
+        type: SORT_BY_POPULAR,
+        payload: json
+      })
   }
 }
