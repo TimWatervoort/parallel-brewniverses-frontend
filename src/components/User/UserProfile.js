@@ -13,30 +13,6 @@ class UserProfile extends Component {
 
   constructor(props) {
     super(props)
-    this.state= {
-      picture: '',
-      editOn: false
-    }
-  }
-
-  startEdit = e => {
-    const { user } = this.props
-    this.setState({
-      editOn: true,
-      picture: user.picture
-    })
-  }
-
-  submitEdit = e => {
-    const { user, editUser } = this.props
-    this.setState({
-      editOn: false
-    })
-    const edits = {
-      picture: this.state.picture,
-      channels: user.channels
-    }
-    editUser(user.id, edits)
   }
 
   handleChange = e => {
@@ -70,26 +46,12 @@ class UserProfile extends Component {
                 <div className="col-5">
                   <img src={user.picture ? user.picture : imgSrc} alt="user profile" className="user-img img-fluid my-3" />
 
-                  <div className='row'>
-                    <div className='col'>
-                      <button
-                      onClick={this.state.editOn ? this.submitEdit : this.startEdit }
-                      className='btn galaxy-indigo text-white sub-button'>
-                        <i className="fas fa-edit"></i> {this.state.editOn ? 'Submit' : 'Edit Picture'}
-                      </button>
-                    </div>
-                  </div>
-
                 </div>
                 <div className="col-7">
                   <h3 className="py-1"><strong>User: </strong>{user.username}</h3>
                   <h3 className="py-1"><strong>Posts: </strong>{user.posts ? user.posts.length : 0}</h3>
                   {Cookies.get('user_id') ? <button onClick={this.logout} className='btn galaxy-indigo text-white sub-button'>Log Out</button> : <div></div>}
                 </div>
-              </div>
-
-              <div className='row'>
-                {this.state.editOn ? <input name='picture' className='mt-3 form-control' type='url' value={this.state.picture} onChange={this.handleChange}/> : <div></div>}
               </div>
 
             </div>
