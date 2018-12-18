@@ -43,42 +43,6 @@ export const getUsers = () => {
   }
 }
 
-export const addUser = input => {
-  return async dispatch => {
-    const response = await fetch (`${apiUrl}/users/`, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify(input)
-    })
-    if (response.status !== 200 && response.status !== 201) {
-      dispatch({
-        type: SEND_ERROR,
-        payload: 'signup-error'
-      })
-    } else {
-      const json = await response.json()
-
-      dispatch({
-        type: ADD_USER,
-        payload: json
-      })
-      
-      dispatch({
-        type: CLEAR_ERROR
-      })
-
-      setTimeout(() => {
-        dispatch({
-          type: CLEAR_SUCCESS
-        })
-      }, 1000)
-
-    }
-  }
-}
-
 export const addSubscription = (input, existing) => {
   const newTag = { //puts tag into an object
     tag: input
@@ -170,6 +134,44 @@ export const userLogin = input => {
         })
       }
     }
+}
+
+export const addUser = input => {
+  return async dispatch => {
+    const response = await fetch (`${apiUrl}/users/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(input)
+    })
+    if (response.status !== 200 && response.status !== 201) {
+      dispatch({
+        type: SEND_ERROR,
+        payload: 'signup-error'
+      })
+    } else {
+      const json = await response.json()
+
+      dispatch(userLogin({username: input.username, password: input.password}))
+
+      dispatch({
+        type: ADD_USER,
+        payload: json
+      })
+
+      dispatch({
+        type: CLEAR_ERROR
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: CLEAR_SUCCESS
+        })
+      }, 1000)
+
+    }
+  }
 }
 
 export const editUser = (id, input) => {
