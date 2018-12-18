@@ -23,19 +23,25 @@ class Post extends Component {
   }
 
   sendUpvote() {
-    const { posts, match, upvote } = this.props
+    const { posts, match, upvote, user } = this.props
     const id = match.params.id
     const post = posts.filter(x => parseInt(x.id) === parseInt(id))[0]
 
-    upvote(id, post.score)
+    if (user.id) {
+      upvote(id, post.score)
+    }
+
   }
 
   sendDownvote() {
-    const { posts, match, downvote } = this.props
+    const { posts, match, downvote, user } = this.props
     const id = match.params.id
     const post = posts.filter(x => parseInt(x.id) === parseInt(id))[0]
 
-    downvote(id, post.score)
+    if (user.id) {
+      downvote(id, post.score)
+    }
+
   }
 
   startEdit() {
@@ -147,9 +153,9 @@ class Post extends Component {
           </div>
           <div className='col-6'>
             <h4>
-              <i onClick={this.sendUpvote} className="mr-2 uparrow fas fa-arrow-up"></i>
-              {post.score}
-              <i onClick={this.sendDownvote} className="ml-2 downarrow fas fa-arrow-down"></i>
+            <i onClick={this.sendUpvote} className={`${localStorage.getItem(`upvoted${post.id}`) ? 'upvoted' : 'uparrow'} mr-2 fas fa-arrow-up`}></i>
+            {post.score}
+            <i onClick={this.sendDownvote} className={`${localStorage.getItem(`downvoted${post.id}`) ? 'downvoted' : 'downarrow'} ml-2 fas fa-arrow-down`}></i>
             </h4>
           </div>
         </div>
@@ -172,7 +178,8 @@ class Post extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
