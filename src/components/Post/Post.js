@@ -68,7 +68,7 @@ class Post extends Component {
     const { editPost, match } = this.props
     const id = match.params.id
     const newTags = this.state.tags.split(',')
-    const trimmedTags = newTags.map(x=>x.trim())
+    const trimmedTags = newTags.map(x=>x.toLowerCase().trim())
     const objectTags = trimmedTags.map(x=> x={tag: x})
     const edits = {
       title: this.state.title,

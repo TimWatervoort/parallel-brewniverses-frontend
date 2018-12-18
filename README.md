@@ -63,4 +63,7 @@ Shows the login page.
 Shows the signup page.
 
 #### /user
-Shows the user's profile.
+Shows the current user's profile.
+
+#### /users/:id
+Shows another user's profile.
