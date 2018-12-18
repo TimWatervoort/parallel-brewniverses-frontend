@@ -101,11 +101,13 @@ export const upvote = (id, score) => {
         score: upvoted
       })
     })
-    const json = await response.json()
-    dispatch({
-      type: PATCH_POST,
-      payload: json
-    })
+    if (response.status ===  200 || response.status === 201) {
+      const json = await response.json()
+      dispatch({
+        type: PATCH_POST,
+        payload: json
+      })
+    }
   }
 }
 
@@ -141,11 +143,13 @@ export const downvote = (id, score) => {
         score: downvoted
       })
     })
-    const json = await response.json()
-    dispatch({
-      type: PATCH_POST,
-      payload: json
-    })
+    if (response.status ===  200 || response.status === 201) {
+      const json = await response.json()
+      dispatch({
+        type: PATCH_POST,
+        payload: json
+      })
+    }
   }
 }
 
