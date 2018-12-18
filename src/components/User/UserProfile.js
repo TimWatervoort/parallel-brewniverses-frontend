@@ -11,10 +11,6 @@ const imgSrc = 'http://placekitten.com/300/300'
 
 class UserProfile extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   handleChange = e => {
     const key = e.target.name
     this.setState({
