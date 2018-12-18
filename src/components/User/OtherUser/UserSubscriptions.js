@@ -24,7 +24,7 @@ class OtherUserSubscriptions extends Component {
           <div className="card bg-light">
             <h3 className="pt-3 px-3">Subscriptions</h3>
             <hr></hr>
-            <div className="card-body">
+            <div className="ml-3 mb-3">
               {userChannels.map((x,i) => <Link to={`/brewniverse/${x}`}className='badge badge-dark galaxy-indigo p-2 mx-1' key={i}>{x}</Link>)}
             </div>
           </div>
