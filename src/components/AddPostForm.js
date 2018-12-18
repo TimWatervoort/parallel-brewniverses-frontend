@@ -57,7 +57,7 @@ class AddPostForm extends Component {
         <div className='card bg-light'>
           <div className='card-body'>
             <div className='row my-1'>
-              <h3 className='mx-auto'>New Review</h3>
+              <h3 className='mx-auto header-text' style={{ fontSize: '2em' }}>New Review</h3>
             </div>
             <div className='row my-1'>
               {errors === 'add_post_error' ? <h5 className='mx-auto text-danger'>Error creating post.</h5> : <div></div>}
@@ -67,35 +67,35 @@ class AddPostForm extends Component {
           <form onSubmit={this.send}>
 
             <div className='row my-1'>
-              <div className='col-3'><h5>Title:</h5></div>
+                <div className='col-3'><h4 className="form-title">Title:</h4></div>
               <div className='col-9'>
                   <input autoComplete='off' name='title' type='text' className='form-control' value={this.state.title} onChange={this.handleChange} placeholder='Include the name of the beverage...' required={true}/>
               </div>
             </div>
 
             <div className='row my-1'>
-            <div className='col-3'><h5>Image Url: </h5></div>
+                <div className='col-3'><h4 className="form-title">Image Url: </h4></div>
             <div className='col-9'>
               <input autoComplete='off' name='picture' type='url' className='form-control' value={this.state.picture} onChange={this.handleChange} placeholder='Link to an image...' required={true}/>
             </div>
             </div>
 
             <div className='row my-1'>
-            <div className='col-3'><h5>Rating out of 5: </h5></div>
+                <div className='col-3'><h4 className="form-title">Rating out of 5: </h4></div>
             <div className='col-9'>
               <input autoComplete='off' name='rating' max={5} min={0} type='number' className='form-control' value={this.state.rating} onChange={this.handleChange} />
             </div>
             </div>
 
             <div className='row my-1'>
-            <div className='col-3'><h5>Your review: </h5></div>
+                <div className='col-3'><h4 className="form-title">Your review: </h4></div>
             <div className='col-9'>
                   <textarea autoComplete='off' name='content' type='text' className='form-control' value={this.state.content} onChange={this.handleChange} placeholder='Give us your opinion...' required={true}/>
             </div>
             </div>
 
             <div className='row my-1'>
-            <div className='col-3'><h5>Brewniverses: </h5></div>
+                <div className='col-3'><h4 className="form-title">Brewniverses: </h4></div>
             <div className='col-9'>
                   <input autoComplete='off' name='channels' type='text' className='form-control' value={this.state.channels} onChange={this.handleChange} placeholder='Separate brewniverses with commas...' required={true}/>
             </div>

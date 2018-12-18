@@ -10,7 +10,7 @@ body {
 }
 
 .nav-link {
-  color: #1B1640;
+  color: #1B1640 !important;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -31,6 +31,10 @@ body {
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.form-title {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 /* POST PREVIEW CARDS */
