@@ -14,7 +14,6 @@ class Signup extends Component {
       pass: '',
       confPass: '',
       email: '',
-      image: '',
       passMatch: true,
       nameTaken: false,
       signedUp: false
@@ -60,7 +59,6 @@ class Signup extends Component {
         username: this.state.name,
         password: this.state.pass,
         email: this.state.email,
-        picture: this.state.image
       }
       addUser(newUser)
       this.setState({
@@ -68,7 +66,6 @@ class Signup extends Component {
         pass: '',
         confPass: '',
         email: '',
-        image: '',
         passMatch: true,
         nameTaken: false,
         signedUp: true
@@ -137,15 +134,6 @@ class Signup extends Component {
             </div>
             <div className='col-8'>
               <input onChange={this.handleChange} autoComplete='off' name='confPass' required value={this.state.confPass} className='form-control' type='password' placeholder='Password'/>
-            </div>
-          </div>
-
-          <div className='row mt-3'>
-            <div className='col-4'>
-              <h4>Profile Picture: </h4>
-            </div>
-            <div className='col-8'>
-              <input onChange={this.handleChange} autoComplete='off' name='image' value={this.state.image} className='form-control' type='url' placeholder='Image URL'/>
             </div>
           </div>
 

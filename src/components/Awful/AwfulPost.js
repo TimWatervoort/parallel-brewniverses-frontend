@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import './awful.css'
 
 class AwfulPost extends Component {
 
@@ -8,9 +9,11 @@ class AwfulPost extends Component {
 
     const { post } = this.props
 
+    const spin = Math.ceil(Math.random()*2)
+
     return(
       <div className='col-lg-6 col-md-12 mb-3'>
-        <div className='card my-2 shadow h-100'>
+        <div className={`card my-2 shadow h-100 ${spin === 1 ? 'spinnyBoi' : 'reverseSpinnyBoi' }`}>
           <div className='card-body pp-card-body '>
             <div className="row ">
               <div className="col-2 pl-2 pr-1 text-center">

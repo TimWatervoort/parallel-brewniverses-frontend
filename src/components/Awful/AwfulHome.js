@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import AwfulPost from './AwfulPost'
 import { connect } from 'react-redux'
 import HomeChannelHead from '../HomeChannel/HomeChannelHead'
+import './awful.css'
 
 class AwfulHome extends Component {
+
+  handleClick = e => {
+    e.target.setAttribute('hidden', true)
+  }
+
   render(){
 
     const { posts } = this.props
@@ -21,7 +27,7 @@ class AwfulHome extends Component {
     }
 
     return(
-        <div>
+        <div onClick={this.handleClick}>
         <HomeChannelHead />
           <div className='container'>
             <div className='row'>
