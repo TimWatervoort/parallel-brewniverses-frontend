@@ -13,13 +13,17 @@ class PostPreview extends Component {
   }
 
   sendUpvote() {
-    const { post, upvote } = this.props
-    upvote(post.id, post.score)
+    const { post, upvote, user } = this.props
+    if (user.id) {
+      upvote(post.id, post.score)
+    }
   }
 
   sendDownvote() {
-    const { post, downvote } = this.props
-    downvote(post.id, post.score)
+    const { post, downvote, user } = this.props
+    if (user.id) {
+      downvote(post.id, post.score)
+    }
   }
 
   render() {
@@ -36,7 +40,7 @@ class PostPreview extends Component {
               <div className="col-8 pl-3">
                 <div>
                   <h5 className='card-title pp-title'>{post.title}</h5>
-                  <h6 className="text-muted">Rating: {post.rating}/5</h6>
+                  <h6 className="text-muted">Rating: {post.rating}/5 | Rated by: {post.author}</h6>
                   <hr></hr>
                 </div>
               </div>
@@ -66,7 +70,8 @@ class PostPreview extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  user: state.user
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
